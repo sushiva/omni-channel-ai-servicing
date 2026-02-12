@@ -1,0 +1,890 @@
+{
+  "test_dataset": {
+    "description": "RAGAS evaluation dataset with ground truth Q&A pairs for RAG system testing",
+    "version": "1.0",
+    "created": "2024-01-15",
+    "total_questions": 55,
+    "intents_covered": [
+      "ADDRESS_UPDATE",
+      "DISPUTE",
+      "FRAUD_REPORT",
+      "PAYMENT_ISSUE",
+      "CARD_ACTIVATION",
+      "CARD_REPLACEMENT",
+      "ACCOUNT_INQUIRY",
+      "STATEMENT_REQUEST",
+      "BALANCE_INQUIRY"
+    ]
+  },
+  "questions": [
+    {
+      "id": "Q001",
+      "question": "How do I update my address online?",
+      "intent": "ADDRESS_UPDATE",
+      "ground_truth_answer": "To update your address online: 1) Log in to online banking or mobile app, 2) Go to Profile/Settings, 3) Select 'Update Address', 4) Enter new address, 5) Upload proof of address (utility bill, lease, etc.) dated within 60 days, 6) Submit for verification. Processing takes 1-2 business days for online updates. You'll receive confirmation via email once approved.",
+      "ground_truth_contexts": [
+        "Online address updates process in 1-2 business days",
+        "Proof of address required: utility bill, lease agreement, bank statement, or government correspondence dated within 60 days",
+        "Submit through Profile/Settings in online banking or mobile app"
+      ],
+      "complexity": "simple",
+      "expected_sources": ["POL-ADDR-001", "FAQ-ADDR-001"]
+    },
+    {
+      "id": "Q002",
+      "question": "Can I use a PO Box as my mailing address?",
+      "intent": "ADDRESS_UPDATE",
+      "ground_truth_answer": "Yes, but with limitations. You can use a PO Box as your mailing address for statements and correspondence, but NOT as your primary physical address on file. Regulatory compliance (PATRIOT Act) requires a physical address. You cannot use a PO Box for credit/debit card delivery. Best practice: maintain both a physical address (primary) and PO Box (mailing) on your account.",
+      "ground_truth_contexts": [
+        "PO Box accepted as mailing address for statements only",
+        "Cannot use PO Box as primary physical address (PATRIOT Act requirement)",
+        "PO Box not accepted for card delivery"
+      ],
+      "complexity": "medium",
+      "expected_sources": ["POL-ADDR-001", "FAQ-ADDR-001"]
+    },
+    {
+      "id": "Q003",
+      "question": "How long does it take to process a cross-state address change?",
+      "intent": "ADDRESS_UPDATE",
+      "ground_truth_answer": "Cross-state address changes take 5-7 business days total. This is longer than same-state changes (1-2 days) because cross-state moves require enhanced security review (additional 2-3 business days), secondary ID verification, and callback verification to your previous phone number. You'll also need documentation showing both old and new addresses.",
+      "ground_truth_contexts": [
+        "Cross-state moves: 5-7 business days total",
+        "Enhanced security review adds 2-3 business days",
+        "Secondary ID verification and callback required",
+        "Documentation needed for both old and new addresses"
+      ],
+      "complexity": "medium",
+      "expected_sources": ["POL-ADDR-001", "FAQ-ADDR-001"]
+    },
+    {
+      "id": "Q004",
+      "question": "What's the difference between a dispute and fraud?",
+      "intent": "DISPUTE",
+      "ground_truth_answer": "Fraud means you did NOT authorize the transaction at all (someone used your card without permission) - report to fraud hotline 1-800-555-FRAUD for immediate card cancellation. Dispute means you authorized the transaction BUT didn't receive goods/services, received wrong/defective items, were charged wrong amount, or charged after cancellation - file through standard dispute process. Fraud has $0-$50 max liability, disputes depend on investigation outcome.",
+      "ground_truth_contexts": [
+        "Fraud: transaction NOT authorized by you, report to fraud hotline",
+        "Dispute: transaction authorized but problem with goods/services/amount",
+        "Fraud leads to immediate card cancellation",
+        "Dispute leads to investigation with merchant"
+      ],
+      "complexity": "medium",
+      "expected_sources": ["POL-DISP-001", "FAQ-DISP-001"]
+    },
+    {
+      "id": "Q005",
+      "question": "How long does a credit card dispute take to resolve?",
+      "intent": "DISPUTE",
+      "ground_truth_answer": "Credit card disputes take 30-90 days depending on complexity. Simple cases (duplicate charges, cancelled subscriptions) resolve in 30-45 days. Complex cases (merchandise quality, fraud investigation) take 60-90 days. Maximum timeline is 90 days per Regulation Z. You'll receive provisional credit within 10 business days for most disputes while investigation continues.",
+      "ground_truth_contexts": [
+        "Simple cases: 30-45 days",
+        "Complex cases: 60-90 days",
+        "Maximum 90 days (Regulation Z)",
+        "Provisional credit within 10 business days"
+      ],
+      "complexity": "simple",
+      "expected_sources": ["POL-DISP-001", "FAQ-DISP-001"]
+    },
+    {
+      "id": "Q006",
+      "question": "I was charged twice for the same purchase. What should I do?",
+      "intent": "DISPUTE",
+      "ground_truth_answer": "First, check if one charge is a pending authorization that will drop off. If both charges have posted: 1) Contact the merchant first for an immediate refund, 2) If merchant won't help, file a dispute selecting 'Duplicate Charge' as the reason, 3) Provide the original transaction date, amount, and receipt showing single purchase. Duplicate charges resolve faster than most disputes (15-30 days) and provisional credit is usually issued within 5 business days for obvious duplicates.",
+      "ground_truth_contexts": [
+        "Check if one is pending authorization (will drop off)",
+        "Contact merchant first for fastest resolution",
+        "File dispute with 'Duplicate Charge' reason if merchant won't help",
+        "Resolution time: 15-30 days, provisional credit in 5 business days"
+      ],
+      "complexity": "medium",
+      "expected_sources": ["POL-DISP-001", "FAQ-DISP-001"]
+    },
+    {
+      "id": "Q007",
+      "question": "Will I get my money back while my dispute is being investigated?",
+      "intent": "DISPUTE",
+      "ground_truth_answer": "Yes, in most cases. For credit card disputes, you receive temporary credit within 10 business days with no impact on your credit limit. For debit card disputes, provisional credit is issued within 10 business days, or within 5 business days for fraud/unauthorized charges. Disputes under $25 may not receive provisional credit. If the investigation finds in the merchant's favor, the provisional credit will be reversed with 5 days advance notice.",
+      "ground_truth_contexts": [
+        "Credit cards: temporary credit within 10 business days",
+        "Debit cards: provisional credit within 10 business days (5 days for fraud)",
+        "Under $25 may not receive provisional credit",
+        "Credit reversed if merchant wins with 5 days notice"
+      ],
+      "complexity": "medium",
+      "expected_sources": ["POL-DISP-001", "FAQ-DISP-001"]
+    },
+    {
+      "id": "Q008",
+      "question": "What types of fraud should I report immediately?",
+      "intent": "FRAUD_REPORT",
+      "ground_truth_answer": "Report these fraud types immediately to 1-800-555-FRAUD (24/7): account takeover (unauthorized access to your online banking), card fraud (unauthorized purchases), identity theft (accounts opened in your name), check fraud (forged/altered checks), wire fraud (unauthorized wire transfers), and ATM skimming. Call the fraud hotline immediately when detected - your card will be deactivated within 15 minutes, investigation starts within 1 hour, and provisional credit issued within 10 business days.",
+      "ground_truth_contexts": [
+        "Fraud types: account takeover, card fraud, identity theft, check fraud, wire fraud, skimming",
+        "Report to 1-800-555-FRAUD 24/7",
+        "Card deactivated <15 minutes",
+        "Investigation starts <1 hour",
+        "Provisional credit <10 business days"
+      ],
+      "complexity": "simple",
+      "expected_sources": ["POL-FRD-001", "FAQ-GEN-001"]
+    },
+    {
+      "id": "Q009",
+      "question": "What is your zero liability policy for unauthorized charges?",
+      "intent": "FRAUD_REPORT",
+      "ground_truth_answer": "We offer $0 liability for unauthorized transactions on both credit and debit cards, exceeding federal requirements. For credit cards: $0 if reported before card used, $50 max if reported after (but we waive this). For debit cards: $0 if reported within 2 business days, $50 max if reported within 60 days (but we waive this). You must report promptly and not have been negligent. This applies to card-not-present transactions (online/phone) and card-present transactions.",
+      "ground_truth_contexts": [
+        "Zero liability policy: $0 for unauthorized transactions",
+        "Exceeds federal requirements",
+        "Credit cards: typically $0-$50 max (we waive)",
+        "Debit cards: $0-$50 max depending on reporting time (we waive)",
+        "Must report promptly and not be negligent"
+      ],
+      "complexity": "medium",
+      "expected_sources": ["POL-FRD-001", "FAQ-DISP-001"]
+    },
+    {
+      "id": "Q010",
+      "question": "Someone changed my address without permission. What should I do?",
+      "intent": "FRAUD_REPORT",
+      "ground_truth_answer": "This is fraud - act immediately: 1) Call fraud hotline 1-800-555-FRAUD (24/7), 2) We'll revert to correct address immediately, 3) Lock accounts temporarily, 4) Review all recent activity for unauthorized transactions, 5) Issue new cards to correct address, 6) Change all passwords and security questions, 7) File police report (recommended for identity theft), 8) We'll monitor your account for 30-60 days. Enable address change alerts to prevent future unauthorized changes.",
+      "ground_truth_contexts": [
+        "Call fraud hotline immediately: 1-800-555-FRAUD",
+        "Address reverted immediately",
+        "Accounts locked temporarily",
+        "Review recent activity for unauthorized transactions",
+        "New cards issued to correct address",
+        "Change passwords and security questions",
+        "File police report",
+        "60-day monitoring period"
+      ],
+      "complexity": "high",
+      "expected_sources": ["POL-FRD-001", "FAQ-ADDR-001"]
+    },
+    {
+      "id": "Q011",
+      "question": "What are my payment cutoff times for same-day processing?",
+      "intent": "PAYMENT_ISSUE",
+      "ground_truth_answer": "Payment cutoff times for same-day processing: Online/Mobile App - 8:00 PM ET on weekdays (next business day for weekends/holidays), Phone Banking Automated - 8:00 PM ET, Phone with Representative - 5:00 PM ET, Bank ATMs - 8:00 PM ET, In-Branch during business hours - immediate posting, Domestic Wire Transfers - 5:00 PM ET, International Wire Transfers - 3:00 PM ET. Schedule payments 1-2 days before due date to ensure on-time posting.",
+      "ground_truth_contexts": [
+        "Online/Mobile: 8:00 PM ET weekdays",
+        "Phone automated: 8:00 PM ET",
+        "Phone representative: 5:00 PM ET",
+        "Bank ATMs: 8:00 PM ET",
+        "In-branch: immediate during business hours",
+        "Domestic wire: 5:00 PM ET",
+        "International wire: 3:00 PM ET"
+      ],
+      "complexity": "simple",
+      "expected_sources": ["POL-PAY-001", "FAQ-PAY-001"]
+    },
+    {
+      "id": "Q012",
+      "question": "What's the difference between ACH and wire transfer?",
+      "intent": "PAYMENT_ISSUE",
+      "ground_truth_answer": "ACH transfers take 1-3 business days, cost $0-3, have $25K-$100K daily limits, are reversible within 60 days, and use batch processing. Best for regular transfers and bill pay. Wire transfers are same-day (domestic) or 1-2 days (international), cost $15-50, have $100K+ limits, are irreversible once processed, and use real-time processing. Best for large amounts, time-sensitive payments, international transfers, and real estate transactions. Use ACH for regular bills under $25K and wires for urgent/large payments.",
+      "ground_truth_contexts": [
+        "ACH: 1-3 days, $0-3 fee, $25K-$100K limit, reversible, batch processing",
+        "Wire: same-day, $15-50 fee, $100K+ limit, irreversible, real-time",
+        "ACH best for: regular bills, non-urgent",
+        "Wire best for: large amounts, urgent, international, real estate"
+      ],
+      "complexity": "medium",
+      "expected_sources": ["POL-PAY-001", "FAQ-PAY-001"]
+    },
+    {
+      "id": "Q013",
+      "question": "My payment failed due to insufficient funds. What are my options?",
+      "intent": "PAYMENT_ISSUE",
+      "ground_truth_answer": "When a payment fails due to insufficient funds: 1) We'll automatically retry next business day for scheduled payments, 2) You'll be charged $35 NSF fee (may be waived for first occurrence), 3) Payee may charge late fees. Your options: resubmit payment manually once funds available, transfer funds from savings/other accounts, use overdraft protection (link backup account), or contact us to discuss fee waiver or payment plan. Prevention: set low balance alerts, enable overdraft protection, and maintain buffer funds.",
+      "ground_truth_contexts": [
+        "Automatic retry next business day for scheduled payments",
+        "$35 NSF fee (first may be waived)",
+        "Options: resubmit, transfer funds, overdraft protection",
+        "Prevention: alerts, overdraft protection, buffer funds"
+      ],
+      "complexity": "medium",
+      "expected_sources": ["POL-PAY-001", "FAQ-PAY-001"]
+    },
+    {
+      "id": "Q014",
+      "question": "Do you offer payment assistance if I'm experiencing financial hardship?",
+      "intent": "PAYMENT_ISSUE",
+      "ground_truth_answer": "Yes, we offer comprehensive hardship programs. Eligibility includes job loss, reduced income, medical emergency, disability, natural disaster, military deployment, or death of family member. Benefits include: reduced APR (potentially to 0% temporarily), reduced minimum payment, fee waivers, extended repayment terms, and deferred payments (3-6 months). Programs typically last 6-12 months with extension options. Contact us BEFORE missing a payment at 1-800-555-HARDSHIP - more options available before delinquency. Some programs have no credit impact.",
+      "ground_truth_contexts": [
+        "Hardship programs available for qualifying events",
+        "Benefits: reduced APR, lower payments, fee waivers, extended terms, deferred payments",
+        "Duration: 6-12 months typically",
+        "Contact before missing payment: 1-800-555-HARDSHIP",
+        "Some programs have no credit impact"
+      ],
+      "complexity": "high",
+      "expected_sources": ["POL-PAY-001", "FAQ-PAY-001"]
+    },
+    {
+      "id": "Q015",
+      "question": "Will a late payment affect my credit score?",
+      "intent": "PAYMENT_ISSUE",
+      "ground_truth_answer": "Payments 0-29 days late are NOT reported to credit bureaus (no credit impact), but late fees ($25-40) still apply. Payments 30+ days late ARE reported and cause significant credit score drops (60-110 points), remain on credit report for 7 years, and may trigger interest rate increases. Pay within 29 days to avoid credit damage. Set up auto-pay and payment reminders to prevent late payments. If you have strong payment history and one-time slip, we may remove the late mark (call and request goodwill adjustment).",
+      "ground_truth_contexts": [
+        "0-29 days late: NOT reported to credit bureaus (no credit impact)",
+        "30+ days late: REPORTED, 60-110 point drop, stays 7 years",
+        "Late fees apply even if not reported",
+        "Set up auto-pay to prevent",
+        "Goodwill adjustment possible for one-time slips with good history"
+      ],
+      "complexity": "medium",
+      "expected_sources": ["POL-PAY-001", "FAQ-PAY-001"]
+    },
+    {
+      "id": "Q016",
+      "question": "How do I activate my new debit card?",
+      "intent": "CARD_ACTIVATION",
+      "ground_truth_answer": "Activate your new debit card using any of these methods: Mobile App - fastest method, tap 'Activate Card' on home screen and follow prompts; Online Banking - log in, go to Card Services, select 'Activate Card'; Phone - call 1-800-555-BANK (automated system, 24/7); ATM - insert card, enter temporary PIN from letter, follow activation prompts. Card activates immediately and is ready to use. Set your personalized PIN during activation process or change it afterward.",
+      "ground_truth_contexts": [
+        "Activation methods: mobile app (fastest), online banking, phone (24/7), ATM",
+        "Immediate activation",
+        "Set PIN during activation or change afterward",
+        "Phone: 1-800-555-BANK automated system"
+      ],
+      "complexity": "simple",
+      "expected_sources": ["POL-CARD-001", "FAQ-GEN-001"]
+    },
+    {
+      "id": "Q017",
+      "question": "How do I replace a lost or stolen card?",
+      "intent": "CARD_REPLACEMENT",
+      "ground_truth_answer": "To replace a lost/stolen card: 1) Report immediately via mobile app (Card Controls → Report Lost/Stolen), online banking, or call 1-800-555-FRAUD 24/7, 2) Card is deactivated within 60 seconds, 3) Replacement card ordered automatically, 4) Recent transactions reviewed for unauthorized charges. Replacement arrives in 5-7 business days (free standard shipping) or 1-2 business days ($15 expedited fee). Use digital wallet (Apple Pay, Google Pay) or get instant card at select branches while waiting. Zero liability for unauthorized charges.",
+      "ground_truth_contexts": [
+        "Report via app, online, or 1-800-555-FRAUD",
+        "Card deactivated within 60 seconds",
+        "Replacement: 5-7 days free, 1-2 days $15 expedited",
+        "Digital wallet works while waiting",
+        "Instant issue at select branches",
+        "Zero liability for unauthorized charges"
+      ],
+      "complexity": "simple",
+      "expected_sources": ["POL-CARD-001", "FAQ-GEN-001"]
+    },
+    {
+      "id": "Q018",
+      "question": "Can I lock and unlock my card from my phone?",
+      "intent": "CARD_REPLACEMENT",
+      "ground_truth_answer": "Yes, use Card Controls in the mobile app to instantly lock/unlock your card. When locked, all new transactions are blocked (ATM, online, in-store) but recurring payments continue. Unlock anytime instantly. Use cases: lock when not using card for security, lock if misplaced (unlock if found), lock while traveling internationally, lock specific card types. You can also set spending limits, block merchant categories, and enable geographic restrictions through Card Controls.",
+      "ground_truth_contexts": [
+        "Mobile app Card Controls feature",
+        "Instant lock/unlock",
+        "Locked: new transactions blocked, recurring payments continue",
+        "Additional controls: spending limits, merchant blocks, geo-restrictions"
+      ],
+      "complexity": "simple",
+      "expected_sources": ["POL-CARD-001", "FAQ-GEN-001"]
+    },
+    {
+      "id": "Q019",
+      "question": "How do I check my account balance?",
+      "intent": "BALANCE_INQUIRY",
+      "ground_truth_answer": "Check your balance through: Mobile App - view on home screen (fastest, real-time), Online Banking - dashboard shows all account balances (real-time), Text Banking - text 'BAL' to 555-2265 (must enroll first), Phone Banking - call 1-800-555-BANK for automated balance inquiry (15-30 min delay), ATM - insert card and check balance (no fee at our ATMs, slight delay), In-Branch - visit teller for balance inquiry, Monthly Statement - shows closing balance. Use available balance (not current balance) for spending decisions to avoid overdrafts.",
+      "ground_truth_contexts": [
+        "Methods: mobile app (fastest), online, text, phone, ATM, branch, statement",
+        "Mobile/online: real-time updates",
+        "Phone/ATM: 15-30 minute delay",
+        "Text 'BAL' to 555-2265 (enrollment required)",
+        "Use available balance for spending decisions"
+      ],
+      "complexity": "simple",
+      "expected_sources": ["POL-ACCT-001", "FAQ-GEN-001"]
+    },
+    {
+      "id": "Q020",
+      "question": "What's the difference between available balance and current balance?",
+      "intent": "BALANCE_INQUIRY",
+      "ground_truth_answer": "Current balance is the total funds in your account including deposits not yet available, but doesn't subtract pending transactions - it's what you 'own' on paper. Available balance is funds you can actually use RIGHT NOW - it subtracts pending transactions, holds on deposits, and ATM authorizations. Always use available balance for spending decisions to avoid overdrafts. Example: $1,000 starting balance + $500 check deposit (on hold) - $75 gas pre-auth = $1,500 current, $925 available.",
+      "ground_truth_contexts": [
+        "Current balance: total funds including held deposits, doesn't subtract pending",
+        "Available balance: what you can spend now (subtracts pending, holds, authorizations)",
+        "Always use available balance for spending decisions",
+        "Available balance prevents overdrafts"
+      ],
+      "complexity": "medium",
+      "expected_sources": ["POL-ACCT-001", "FAQ-GEN-001"]
+    },
+    {
+      "id": "Q021",
+      "question": "How long do check deposits take to be available?",
+      "intent": "ACCOUNT_INQUIRY",
+      "ground_truth_answer": "Check deposit availability: First $200 - next business day (all deposit methods), Remaining amount for local checks - 2 business days, Out-of-state checks - 5 business days, Foreign checks - 10-30 business days. Extended holds (7-10 days) apply to: new accounts under 30 days old, redeposited checks, deposits over $5,000, accounts with overdraft history, suspected fraud. Cash and electronic deposits (wire, direct deposit, internal transfers) are available immediately. Deposit at branch with teller for faster availability than ATM.",
+      "ground_truth_contexts": [
+        "First $200: next business day",
+        "Local checks remaining: 2 business days",
+        "Out-of-state: 5 business days",
+        "Foreign: 10-30 business days",
+        "Extended holds: new accounts, large amounts, overdraft history",
+        "Cash/electronic: immediate",
+        "Branch deposits faster than ATM"
+      ],
+      "complexity": "medium",
+      "expected_sources": ["POL-ACCT-001", "FAQ-GEN-001"]
+    },
+    {
+      "id": "Q022",
+      "question": "How do I request old bank statements?",
+      "intent": "STATEMENT_REQUEST",
+      "ground_truth_answer": "To request old statements: Online Banking - last 18 months available free in 'Statements & Documents', downloadable as PDF. For older statements: $5 per statement for 19-84 months old, $10 per statement for 84+ months old, delivered via mail or email PDF. Request through: secure message in online banking, phone 1-800-555-BANK, or in-branch at any location. Processing time: 5-7 business days. Switch to eStatements (paperless) to access online indefinitely and save $2-5/month on paper statement fees.",
+      "ground_truth_contexts": [
+        "Last 18 months: free online in Statements & Documents",
+        "19-84 months old: $5 per statement",
+        "84+ months: $10 per statement",
+        "Request: online secure message, phone, or branch",
+        "Processing: 5-7 business days",
+        "eStatements: free, accessible indefinitely"
+      ],
+      "complexity": "medium",
+      "expected_sources": ["POL-ACCT-001", "FAQ-GEN-001"]
+    },
+    {
+      "id": "Q023",
+      "question": "How can I protect my account from fraud?",
+      "intent": "FRAUD_REPORT",
+      "ground_truth_answer": "Enable multi-layered security: 1) Multi-factor authentication (MFA) for login with text/email/authenticator codes and biometric login, 2) Transaction alerts for purchases over threshold, online transactions, international use, large ATM withdrawals, 3) Card controls to lock/unlock card, set spending limits, block merchant categories, geographic restrictions, 4) Account alerts for low balance, address changes, password changes, new payees. Best practices: unique 12+ character password changed every 90 days, never share credentials, verify sender before clicking links, don't bank on public WiFi, review transactions 2-3 times weekly, enable remote device wipe.",
+      "ground_truth_contexts": [
+        "MFA: text/email/authenticator codes, biometric login",
+        "Transaction alerts: threshold, online, international, ATM",
+        "Card controls: lock/unlock, limits, merchant/geo blocks",
+        "Account alerts: balance, changes, new payees",
+        "Password: 12+ chars, unique, change quarterly",
+        "Review transactions 2-3x weekly"
+      ],
+      "complexity": "high",
+      "expected_sources": ["POL-FRD-001", "FAQ-GEN-001"]
+    },
+    {
+      "id": "Q024",
+      "question": "Is mobile banking safe?",
+      "intent": "ACCOUNT_INQUIRY",
+      "ground_truth_answer": "Yes, mobile banking is very safe with multiple security layers: 256-bit SSL encryption (bank-grade), biometric login (fingerprint/face ID), device authorization (each device must be authorized), auto-timeout after 5 minutes inactivity, no stored passwords (credentials not saved), transaction verification with biometric/PIN, instant card lock/unlock. Best practices: enable biometric login, use strong device passcode, keep app updated, enable transaction alerts, use secure WiFi/cellular not public WiFi, log out after sessions, enable remote device wipe. Mobile banking is safer than in-branch (less human error), public ATMs (no skimmers), and phone banking.",
+      "ground_truth_contexts": [
+        "256-bit SSL encryption (bank-grade)",
+        "Biometric login (fingerprint, face ID)",
+        "Device authorization required",
+        "Auto-timeout 5 minutes",
+        "No stored passwords",
+        "Safer than: branch, public ATMs, phone banking",
+        "Best practices: biometric login, strong passcode, app updates, alerts"
+      ],
+      "complexity": "medium",
+      "expected_sources": ["FAQ-GEN-001", "POL-FRD-001"]
+    },
+    {
+      "id": "Q025",
+      "question": "How do I set up auto-pay for my credit card?",
+      "intent": "PAYMENT_ISSUE",
+      "ground_truth_answer": "Set up credit card auto-pay via: Online Banking - go to Bill Pay or Credit Cards, select card, click 'Automatic Payments', choose payment amount (minimum, fixed amount, full statement balance, or current balance), select payment date (due date, X days before due date, or specific date of month), review and confirm. Mobile App - Accounts → select credit card → 'Manage Payments' → 'AutoPay' → follow setup wizard. Phone - call 1-800-555-BANK. Recommendations: pay full balance to avoid interest, set payment 5 days before due date for processing buffer, use checking with buffer funds, enable low balance alerts. Change or cancel anytime.",
+      "ground_truth_contexts": [
+        "Setup: online banking (Bill Pay/Credit Cards), mobile app (Manage Payments), phone",
+        "Amount options: minimum, fixed, full statement, current balance",
+        "Date options: due date, X days before, specific date",
+        "Recommend: full balance, 5 days before due, buffer funds",
+        "Change/cancel anytime"
+      ],
+      "complexity": "medium",
+      "expected_sources": ["POL-PAY-001", "FAQ-PAY-001"]
+    },
+    {
+      "id": "Q026",
+      "question": "Can I dispute a charge if I authorized someone to use my card?",
+      "intent": "DISPUTE",
+      "ground_truth_answer": "Usually NOT disputable if you voluntarily gave someone your card and authorized them to make purchases, even if they spent more than expected - this is a civil matter between you and that person, not fraud. Exception - MAY be disputable: if authorized for specific amount but they charged more, authorized for one-time use but made recurring charges, authorized for specific merchant but used elsewhere, or used card fraudulently after you revoked permission. Best approach: attempt to resolve with the person, file police report if they refuse to repay, then contact us for case-by-case review. Prevention: never give card number to anyone, use authorized users or joint accounts instead.",
+      "ground_truth_contexts": [
+        "Usually NOT disputable: voluntarily gave card and authorized purchases",
+        "Exception: authorized specific amount but charged more, one-time became recurring, used after revocation",
+        "Civil matter, not fraud",
+        "Approach: resolve with person, police report, then contact us",
+        "Prevention: don't share card, use authorized users"
+      ],
+      "complexity": "high",
+      "expected_sources": ["POL-DISP-001", "FAQ-DISP-001"]
+    },
+    {
+      "id": "Q027",
+      "question": "What happens if a merchant refuses to refund me?",
+      "intent": "DISPUTE",
+      "ground_truth_answer": "This is what chargebacks are for. Process: 1) Try merchant first for refund (required), 2) Document all contact attempts (emails, calls, screenshots), 3) File dispute with us if merchant unresponsive/refuses, 4) We contact merchant on your behalf - merchant has 30 days to provide evidence, 5) We review both sides and make determination within 60-90 days. If merchant doesn't respond within 30 days, you automatically win. If merchant provides evidence, we review based on card network rules, transaction documentation, your evidence, and merchant's terms and conditions.",
+      "ground_truth_contexts": [
+        "Process: try merchant first (required), document attempts, file dispute",
+        "We contact merchant, they have 30 days to respond",
+        "No response: you win automatically",
+        "With response: we review both sides, 60-90 day decision",
+        "Review criteria: card network rules, documentation, evidence, merchant T&Cs"
+      ],
+      "complexity": "high",
+      "expected_sources": ["POL-DISP-001", "FAQ-DISP-001"]
+    },
+    {
+      "id": "Q028",
+      "question": "Can I use a temporary address while I'm working abroad for 6 months?",
+      "intent": "ADDRESS_UPDATE",
+      "ground_truth_answer": "Yes, use our temporary address feature instead of changing your permanent address. Benefits: keeps permanent address on file, mail forwarded to temporary address for 1-12 months, automatically reverts when period ends, can cancel or extend anytime. Perfect for seasonal residences, extended work assignments, long travel, study abroad, or temporary relocations. Set up through: Online Banking → Account Services → Temporary Address, or call customer service. This is better than changing permanent address for short-term relocations.",
+      "ground_truth_contexts": [
+        "Temporary address feature: 1-12 months",
+        "Benefits: keeps permanent address, auto-reverts, cancel/extend anytime",
+        "Perfect for: seasonal, work assignment, travel, study abroad",
+        "Setup: Online Banking → Account Services → Temporary Address, or phone",
+        "Better than permanent change for short-term"
+      ],
+      "complexity": "medium",
+      "expected_sources": ["POL-ADDR-001", "FAQ-ADDR-001"]
+    },
+    {
+      "id": "Q029",
+      "question": "How do I close my bank account?",
+      "intent": "ACCOUNT_INQUIRY",
+      "ground_truth_answer": "Before closing: 1) Zero out balance (transfer/withdraw all funds, wait for pending to clear, ensure no outstanding checks), 2) Stop automatic transactions (cancel scheduled payments, disable auto-pay, remove from external services, update payroll direct deposit), 3) Download records (export statements for 7 years tax retention, save transaction history, get screenshots of final balance). Close via: in-branch (recommended, bring ID, sign closure form, receive balance as cash up to $3,000/cashier's check/transfer), phone (1-800-555-BANK, balance mailed via check in 7-10 days), or mail (signed letter to Account Services). Timeline: 1-2 business days to process, card deactivated immediately, online access removed within 24 hours. Fees: $25 if account under 90 days old.",
+      "ground_truth_contexts": [
+        "Before closing: zero balance, stop auto-transactions, download records",
+        "Methods: in-branch (recommended), phone, mail",
+        "In-branch: ID, closure form, balance as cash/check/transfer",
+        "Phone: 1-800-555-BANK, check mailed 7-10 days",
+        "Timeline: 1-2 days process, immediate card deactivation",
+        "Fee: $25 if under 90 days old"
+      ],
+      "complexity": "high",
+      "expected_sources": ["FAQ-GEN-001", "POL-ACCT-001"]
+    },
+    {
+      "id": "Q030",
+      "question": "What is overdraft protection and how does it work?",
+      "intent": "ACCOUNT_INQUIRY",
+      "ground_truth_answer": "Overdraft protection covers you when balance is insufficient. Without it: debit declined, checks bounce, ACH rejected, $35 NSF fee per item. With it: transaction approved, funds pulled from linked backup account (savings, second checking, or line of credit), small $10 transfer fee per day (not per transaction), no NSF fee. Linked account transfer (most common): links checking to savings, automatic transfer in $50 increments when needed, $10 fee per transfer day. Setup: Online Account Services → Overdraft Protection, mobile app Settings → Link Accounts, phone 1-800-555-BANK, or in-branch. Best practice: link to savings (cheapest), keep buffer in checking, enable low balance alerts.",
+      "ground_truth_contexts": [
+        "Without: declined transactions, $35 NSF fee",
+        "With: approved transactions, funds from backup account, $10 transfer fee/day",
+        "Types: linked account (savings/checking), line of credit",
+        "Linked account: $10 fee, transfers in $50 increments",
+        "Setup: online, app, phone, branch",
+        "Best: link savings, keep buffer, enable alerts"
+      ],
+      "complexity": "high",
+      "expected_sources": ["FAQ-GEN-001", "POL-ACCT-001"]
+    },
+    {
+      "id": "Q031",
+      "question": "I never received an item I ordered online. Can I dispute?",
+      "intent": "DISPUTE",
+      "ground_truth_answer": "Yes, this is a common chargeback reason. Before disputing (required): 1) Check tracking - item may still be in transit, 2) Contact merchant for refund or reshipping, 3) Wait reasonable timeframe (merchant's delivery window + 5 days), 4) Document everything (tracking, emails, order confirmation). Dispute when: tracking shows 'delivered' but you never received it, delivery window passed with no shipment, merchant unresponsive to refund requests. Evidence needed: order confirmation, tracking number if provided, communication with merchant, proof of delivery address. Success rate is very high if tracking shows non-delivery or merchant unresponsive.",
+      "ground_truth_contexts": [
+        "Before disputing: check tracking, contact merchant, wait delivery window + 5 days, document",
+        "Dispute if: tracking shows delivered but not received, past delivery window, merchant unresponsive",
+        "Evidence: order confirmation, tracking, merchant communication, delivery address",
+        "High success rate for non-delivery or unresponsive merchant"
+      ],
+      "complexity": "medium",
+      "expected_sources": ["POL-DISP-001", "FAQ-DISP-001"]
+    },
+    {
+      "id": "Q032",
+      "question": "Can I schedule future payments?",
+      "intent": "PAYMENT_ISSUE",
+      "ground_truth_answer": "Yes, multiple scheduling options: One-time future payment - schedule up to 365 days in advance, edit or cancel before processing date, confirmation email 1 day before, automatic retry if fails. Recurring payments - weekly, bi-weekly, monthly, quarterly, annually, choose specific date or 'due date', automatic weekend/holiday adjustments, no limit on number. Amount options: minimum payment, fixed amount, full balance, or custom. Management: view all scheduled in one place, edit amount/date up to 1 day before processing, skip a payment for recurring, cancel anytime before processing. Use cases: rent/mortgage recurring monthly, credit card auto-pay minimum or full, utilities auto-pay when bills post.",
+      "ground_truth_contexts": [
+        "One-time: up to 365 days advance, edit/cancel before processing, confirmation 1 day before",
+        "Recurring: weekly/bi-weekly/monthly/quarterly/annually, specific date or due date",
+        "Amounts: minimum, fixed, full balance, custom",
+        "Management: view all, edit up to 1 day before, skip, cancel anytime",
+        "Use cases: rent/mortgage, credit cards, utilities"
+      ],
+      "complexity": "medium",
+      "expected_sources": ["POL-PAY-001", "FAQ-PAY-001"]
+    },
+    {
+      "id": "Q033",
+      "question": "How do I reset my online banking password?",
+      "intent": "ACCOUNT_INQUIRY",
+      "ground_truth_answer": "Reset password methods: Self-service (if remember security answers) - go to login page, click 'Forgot Password', enter username/email, answer security questions, create new password. Email verification - click 'Forgot Password', enter email, receive reset link (expires in 30 minutes), click link, create new password. Mobile app - tap 'Forgot Password' without logging in, verify identity via text/email code or biometric if previously set up, create new password. Phone - call 1-800-555-BANK, verify identity (SSN, DOB, address, recent transactions), receive temporary password via email/text, must change on first login. In-branch - visit with valid ID, banker resets immediately. Password requirements: 12+ characters, upper/lowercase, number, special character, can't match previous 5. After reset: all devices logged out, must re-authorize.",
+      "ground_truth_contexts": [
+        "Methods: self-service (security questions), email verification, mobile app, phone 1-800-555-BANK, in-branch",
+        "Email: reset link expires 30 minutes",
+        "Phone: temporary password, change on first login",
+        "Requirements: 12+ chars, upper/lower, number, special char",
+        "After reset: all devices logged out"
+      ],
+      "complexity": "medium",
+      "expected_sources": ["FAQ-GEN-001", "POL-ACCT-001"]
+    },
+    {
+      "id": "Q034",
+      "question": "What documents do I need to update my address?",
+      "intent": "ADDRESS_UPDATE",
+      "ground_truth_answer": "For same-state address change: 1) Valid government-issued photo ID (driver's license, passport, state ID), 2) One proof of new address dated within 60 days - utility bill (water, electric, gas, internet), lease agreement or mortgage statement, bank statement from another institution, or government correspondence (DMV, IRS). For cross-state address change: everything above PLUS secondary form of ID verification and documentation showing both old and new addresses. For international address: embassy or consulate documentation, notarized proof of residence, international mailing address verification.",
+      "ground_truth_contexts": [
+        "Same-state: photo ID + proof of address within 60 days",
+        "Proof options: utility bill, lease, mortgage, bank statement, government mail",
+        "Cross-state: same-state docs + secondary ID + both addresses documentation",
+        "International: embassy docs, notarized proof, mailing verification"
+      ],
+      "complexity": "medium",
+      "expected_sources": ["POL-ADDR-001", "FAQ-ADDR-001"]
+    },
+    {
+      "id": "Q035",
+      "question": "I cancelled a subscription but they're still charging me. What do I do?",
+      "intent": "DISPUTE",
+      "ground_truth_answer": "This is a disputable charge. Immediate steps: 1) Contact merchant requesting cancellation confirmation in writing, 2) Check cancellation policy to ensure you followed correct procedure, 3) Document cancellation (save confirmation emails, screenshots, timestamps). If charges continue: file dispute selecting 'Services Cancelled', provide evidence (cancellation confirmation, screenshots, email timestamps), specify date cancelled and number of charges since. Recurring charge protection: we can block future charges from this merchant, set up alerts for subscription charges, review subscriptions monthly in app. Success rate is very high if you can prove cancellation.",
+      "ground_truth_contexts": [
+        "Disputable charge",
+        "Steps: contact merchant for written confirmation, check policy, document cancellation",
+        "File dispute: 'Services Cancelled', provide cancellation proof, dates",
+        "Protection: block future charges, subscription alerts, monthly review",
+        "High success rate with cancellation proof"
+      ],
+      "complexity": "medium",
+      "expected_sources": ["POL-DISP-001", "FAQ-DISP-001"]
+    },
+    {
+      "id": "Q036",
+      "question": "What are the branch hours and holiday closures?",
+      "intent": "ACCOUNT_INQUIRY",
+      "ground_truth_answer": "Full-service branches: Monday-Thursday 9:00 AM - 5:00 PM, Friday 9:00 AM - 6:00 PM, Saturday 9:00 AM - 1:00 PM, Sunday closed. Express branches (grocery stores): Monday-Friday 9:00 AM - 7:00 PM, Saturday 9:00 AM - 5:00 PM, Sunday 10:00 AM - 4:00 PM. Drive-thru only: often 7:00 AM - 7:00 PM weekdays. Holiday closures: federal holidays (New Year's, MLK Day, Presidents Day, Memorial Day, Juneteenth, Independence Day, Labor Day, Columbus Day, Veterans Day, Thanksgiving, Christmas). 24/7 services: ATMs, online banking, mobile app, phone banking 1-800-555-BANK. Find specific branch hours via branch locator on website or mobile app 'Find Branch' feature.",
+      "ground_truth_contexts": [
+        "Full-service: M-Th 9AM-5PM, F 9AM-6PM, Sat 9AM-1PM, Sun closed",
+        "Express: M-F 9AM-7PM, Sat 9AM-5PM, Sun 10AM-4PM",
+        "Drive-thru: often 7AM-7PM weekdays",
+        "Closed: federal holidays",
+        "24/7: ATMs, online, mobile, phone 1-800-555-BANK",
+        "Find hours: website branch locator, mobile app"
+      ],
+      "complexity": "simple",
+      "expected_sources": ["FAQ-GEN-001"]
+    },
+    {
+      "id": "Q037",
+      "question": "How long should I keep my bank statements?",
+      "intent": "STATEMENT_REQUEST",
+      "ground_truth_answer": "Retention guidelines: 1 year - monthly statements without tax/legal purpose, ATM receipts after reconciling, deposit slips after confirming, credit card statements after reconciling. 3 years - statements with tax transactions, medical payment records, tax deduction support, business expenses. 7 years - tax return supporting documents, investment purchase/sale records, mortgage statements, business accounting, IRS can audit back 6 years. Permanently - annual tax returns, home purchase/sale records, investment purchase documents, retirement contributions, pension records, estate planning. Storage: fireproof safe for critical documents, labeled folders by year/category, download PDFs to cloud storage with encrypted backup, use crosscut shredder when disposing. Annual review in January to purge documents outside retention period.",
+      "ground_truth_contexts": [
+        "1 year: monthly statements, ATM receipts, deposit slips, credit card statements",
+        "3 years: tax-related, medical, deductions, business expenses",
+        "7 years: tax returns support, investments, mortgage, business, IRS audit",
+        "Forever: tax returns, home purchase/sale, retirement, estate planning",
+        "Storage: fireproof safe, folders, cloud PDFs, encrypted backup, crosscut shred"
+      ],
+      "complexity": "high",
+      "expected_sources": ["FAQ-GEN-001", "POL-ACCT-001"]
+    },
+    {
+      "id": "Q038",
+      "question": "I accidentally paid twice. How do I get my money back?",
+      "intent": "PAYMENT_ISSUE",
+      "ground_truth_answer": "If both payments are pending: log in to online banking, go to scheduled/pending payments, cancel the duplicate (if not yet processed), receive immediate confirmation. If both payments posted: Same-day duplicate - call 1-800-555-BANK immediately, we can often reverse same-day duplicates, must report within 2 hours. Different-day or after window - contact payee first for refund (credit card credits next statement, loan servicer 7-10 days, bill pay recipient varies), document refund request, monitor for credit. If payee won't refund: file dispute with us, provide both transaction records and evidence of payee contact, we'll investigate. Bill pay duplicates: contact us to stop payment on check if not yet cashed, electronic payments can be reversed within 24 hours. Prevention: review payment summary before confirming, enable payment confirmation alerts.",
+      "ground_truth_contexts": [
+        "Pending: cancel duplicate in online banking",
+        "Posted same-day: call immediately, reversible within 2 hours",
+        "Posted different day: contact payee for refund, document, monitor",
+        "Payee won't refund: file dispute with us",
+        "Bill pay: stop check if not cashed, electronic reversible within 24 hours",
+        "Prevention: review before submit, enable alerts"
+      ],
+      "complexity": "high",
+      "expected_sources": ["POL-PAY-001", "FAQ-PAY-001"]
+    },
+    {
+      "id": "Q039",
+      "question": "Can I have multiple savings accounts?",
+      "intent": "ACCOUNT_INQUIRY",
+      "ground_truth_answer": "Yes, you can have up to 10 savings accounts per customer. No limit on checking accounts (can have multiple personal, business, joint). Common multi-account setups: primary checking (bills/expenses), secondary checking (spending money), savings #1 (emergency fund), savings #2 (specific goals like vacation/car), money market (long-term savings). Benefits: better budgeting, separation of funds, goal-based savings, overdraft protection by linking accounts, interest rate shopping. Managing: single login for all accounts online/mobile, consolidated statements (opt-in), account nicknames (e.g., 'Emergency Fund'), automated transfers between accounts, single fee structure with combined balance potentially waiving monthly fees. Each account has own fee structure and minimum balance requirements. Add accounts via: online application (5-10 min), in-branch (15-20 min), phone (15 min), usually instant approval.",
+      "ground_truth_contexts": [
+        "Up to 10 savings accounts per customer",
+        "No limit on checking accounts",
+        "Common setup: primary checking, secondary checking, multiple savings for goals, money market",
+        "Benefits: budgeting, fund separation, goal savings, overdraft protection",
+        "Management: single login, consolidated statements, nicknames, auto-transfers",
+        "Add: online (5-10 min), branch (15-20 min), phone (15 min)"
+      ],
+      "complexity": "medium",
+      "expected_sources": ["FAQ-GEN-001", "POL-ACCT-001"]
+    },
+    {
+      "id": "Q040",
+      "question": "What protections do I have for unauthorized charges on my debit card?",
+      "intent": "FRAUD_REPORT",
+      "ground_truth_answer": "Debit card protections under Regulation E (EFTA): $0 liability if reported within 2 business days of discovery, $50 maximum if reported within 60 days of discovery, $500 maximum if reported after 60 days but before 60 days of statement, unlimited liability if not reported within 60 days of statement. Our zero liability policy exceeds federal requirements - we offer $0 liability for unauthorized debit transactions if reported promptly and you weren't negligent. Report unauthorized charges immediately to 1-800-555-FRAUD (24/7) for best protection. The sooner you report, the better your protection. Provisional credit typically issued within 10 business days, or 5 business days for reported fraud.",
+      "ground_truth_contexts": [
+        "Federal (Reg E): $0 within 2 days, $50 within 60 days, $500 after 60 days, unlimited after statement +60 days",
+        "Our policy: $0 liability if reported promptly and not negligent",
+        "Exceeds federal requirements",
+        "Report immediately: 1-800-555-FRAUD",
+        "Provisional credit: 10 business days (5 for fraud)",
+        "Sooner reporting = better protection"
+      ],
+      "complexity": "high",
+      "expected_sources": ["POL-FRD-001", "POL-DISP-001", "FAQ-DISP-001"]
+    },
+    {
+      "id": "Q041",
+      "question": "How does mobile check deposit work?",
+      "intent": "PAYMENT_ISSUE",
+      "ground_truth_answer": "Mobile check deposit: Open mobile app, select 'Deposit Check', select deposit account, enter check amount, take photo of check front (clear, legible), take photo of check back (must be endorsed with your signature), review and submit. Requirements: endorsed check (sign back), clear legible photos, check made payable to account holder, check not previously deposited. Limits: $2,000-$5,000 per check, $5,000-$10,000 per day, $20,000-$50,000 per month (limits increase with account history). Funds availability: first $200 next business day, remaining 2-5 business days, large checks may hold up to 7 days, business checks often faster than personal. After depositing: write 'Mobile Deposit' on check, keep for 14 days, shred after funds clear. Rejected deposits reasons: poor photo quality, insufficient endorsement, check over 180 days old, already deposited, suspected fraud.",
+      "ground_truth_contexts": [
+        "Process: app → Deposit Check → select account → enter amount → photo front/back → submit",
+        "Requirements: endorsed, clear photos, payable to you, not deposited before",
+        "Limits: $2K-$5K per check, $5K-$10K daily, $20K-$50K monthly (increase with history)",
+        "Availability: $200 next day, remaining 2-5 days, large checks 7 days",
+        "After: write 'Mobile Deposit', keep 14 days, shred when clear",
+        "Rejection: poor quality, no endorsement, old check, duplicate, fraud"
+      ],
+      "complexity": "high",
+      "expected_sources": ["FAQ-PAY-001", "POL-PAY-001"]
+    },
+    {
+      "id": "Q042",
+      "question": "What should I do if I suspect fraud on my account?",
+      "intent": "FRAUD_REPORT",
+      "ground_truth_answer": "Act immediately: 1) Call fraud hotline 1-800-555-FRAUD (24/7), 2) Change passwords (online banking, email if accessed from same device, security questions), 3) Review last 30 days transactions, note suspicious charges (dates, amounts, merchants), screenshot details, 4) Lock cards via mobile app Card Controls. We will: freeze account (temporary hold), deactivate compromised cards, issue replacement cards, review all recent activity with you, initiate fraud investigation, provide provisional credit within 10 business days, file reports with authorities, monitor account 60-90 days. Evidence to gather: suspicious transaction details, phishing emails/texts, timeline of when noticed, recent password changes/access attempts, new devices logged in. Follow-up: file police report for identity theft or large fraud, place fraud alert with credit bureaus (we can help, free, lasts 1 year renewable), monitor credit with free 12-month monitoring we provide. Investigation timeline: provisional credit 10 business days, final determination 30-90 days, letter mailed within 3 days of conclusion.",
+      "ground_truth_contexts": [
+        "Immediate: call 1-800-555-FRAUD, change passwords, review 30 days transactions, lock cards",
+        "We do: freeze account, deactivate cards, issue replacements, review activity, investigate, provisional credit 10 days, monitor 60-90 days",
+        "Evidence: transaction details, phishing attempts, timeline, password changes, new devices",
+        "Follow-up: police report, fraud alert (free, 1 year), credit monitoring (free 12 months)",
+        "Timeline: provisional 10 days, final 30-90 days"
+      ],
+      "complexity": "high",
+      "expected_sources": ["POL-FRD-001", "FAQ-GEN-001"]
+    },
+    {
+      "id": "Q043",
+      "question": "Can I pay my bills with cash?",
+      "intent": "PAYMENT_ISSUE",
+      "ground_truth_answer": "Yes, through in-branch or cash deposit ATM. In-branch: visit any branch location, bring account information and cash, hand to teller, immediate posting, get receipt. Cash deposit ATM: use bank-owned ATMs with cash deposit feature, insert bills directly (no envelope), immediate or same-day credit, get transaction receipt. Limitations: large amounts over $10,000 require ID and IRS reporting (Currency Transaction Report), some bills can't be paid with cash at branch (check first), cash credit card payments post same-day but can take 1 business day. Alternatives: purchase money order with cash if bank doesn't accept cash payments, deposit cash to checking then pay electronically. For your safety: large cash deposits over $10,000 reported to IRS per federal requirement.",
+      "ground_truth_contexts": [
+        "In-branch: visit with cash and account info, hand to teller, immediate, get receipt",
+        "Cash ATM: bank ATMs with deposit feature, insert bills, same-day credit",
+        "Limitations: $10K+ requires ID and IRS reporting, some bills can't pay cash, card payments 1 day",
+        "Alternatives: money order, deposit to checking then pay electronically",
+        "Over $10K: IRS Currency Transaction Report required"
+      ],
+      "complexity": "medium",
+      "expected_sources": ["FAQ-PAY-001", "POL-PAY-001"]
+    },
+    {
+      "id": "Q044",
+      "question": "How do I open a new bank account?",
+      "intent": "ACCOUNT_INQUIRY",
+      "ground_truth_answer": "Three ways to open: Online (15-20 min) - visit website 'Open Account', choose account type (checking, savings, money market, CD), fill out application (personal info, employment, funding), upload ID (driver's license or passport), review and submit, fund within 30 days, receive debit card in 5-7 business days. In-branch (30-45 min) - visit any branch (no appointment needed or schedule ahead), bring valid photo ID, Social Security card/number, initial deposit (varies by account), meet with banker, review options, complete application, open same day, get temporary ATM card (permanent card mailed). Phone (20-30 min) - call 1-800-555-BANK, speak with representative, provide information verbally, fund via transfer from external bank, receive card in 5-7 business days. Requirements: age 18+ (or with adult co-owner), valid government photo ID, Social Security Number or ITIN, US physical address (not PO Box), initial deposit $25-$100 depending on account. Approval usually instant, may take 24-48 hours if additional verification needed.",
+      "ground_truth_contexts": [
+        "Online (15-20 min): website, choose type, fill application, upload ID, fund in 30 days, card 5-7 days",
+        "In-branch (30-45 min): visit with ID/SSN/deposit, meet banker, open same day, temp card",
+        "Phone (20-30 min): 1-800-555-BANK, provide info, fund via transfer, card 5-7 days",
+        "Requirements: 18+, photo ID, SSN/ITIN, US address, initial deposit $25-$100",
+        "Approval: instant usually, 24-48 hours if verification needed"
+      ],
+      "complexity": "high",
+      "expected_sources": ["FAQ-GEN-001"]
+    },
+    {
+      "id": "Q045",
+      "question": "What is a returned payment fee and when is it charged?",
+      "intent": "PAYMENT_ISSUE",
+      "ground_truth_answer": "Returned payment (NSF) fee is $35 per returned payment, charged when insufficient funds to cover payment. Applies to: checks, ACH transfers, scheduled payments, auto-pay. Why it happens: account balance too low, pending deposits not yet available, forgot about scheduled payment, calculation error. Additional consequences: payee may charge late fee, may be reported as late payment, could affect credit score for credit accounts, may result in service termination for utilities/subscriptions. Overdraft vs NSF: overdraft means we cover payment (you go negative, charged overdraft fee), NSF means we don't cover (returned to payee, charged NSF fee). Fee waivers: first occurrence often waived with request, good account history may waive 1-2 per year, financial hardship may qualify for fee assistance program. Prevention: low balance alerts, overdraft protection (link savings account), account buffer ($100-500 minimum), track spending with budgeting app. Request refund: call 1-800-555-BANK within 30 days to request fee review.",
+      "ground_truth_contexts": [
+        "Fee: $35 per returned payment",
+        "Charged: insufficient funds for checks, ACH, scheduled payments, auto-pay",
+        "Why: low balance, pending deposits, forgot payment, error",
+        "Consequences: late fee, late payment report, credit impact, service termination",
+        "Overdraft vs NSF: overdraft=we cover+fee, NSF=returned+fee",
+        "Waivers: first often waived, 1-2/year with history, hardship programs",
+        "Prevention: alerts, overdraft protection, buffer, budgeting",
+        "Refund: call within 30 days"
+      ],
+      "complexity": "high",
+      "expected_sources": ["FAQ-PAY-001", "POL-PAY-001"]
+    },
+    {
+      "id": "Q046",
+      "question": "I'm moving internationally. Can I update to a foreign address?",
+      "intent": "ADDRESS_UPDATE",
+      "ground_truth_answer": "Yes, with special requirements. Requirements: embassy or consulate documentation, notarized proof of residence, international postal service verification, may require additional forms for tax purposes. Processing time: 5-10 business days (longer than domestic). Limitations: some services may be restricted, international mail delivery fees may apply, check delivery times significantly longer, may need to maintain US mailing address for tax documents. Alternatives: use mail forwarding service, maintain US address of family/friend with permission, switch to digital statements and paperless options. Contact international services for full details on maintaining accounts abroad.",
+      "ground_truth_contexts": [
+        "Requirements: embassy/consulate docs, notarized proof, postal verification, tax forms",
+        "Processing: 5-10 business days (longer than domestic)",
+        "Limitations: restricted services, delivery fees, longer check delivery, US address for tax docs",
+        "Alternatives: mail forwarding, family US address, digital/paperless statements"
+      ],
+      "complexity": "high",
+      "expected_sources": ["POL-ADDR-001", "FAQ-ADDR-001"]
+    },
+    {
+      "id": "Q047",
+      "question": "The item I received is defective. Can I get a refund?",
+      "intent": "DISPUTE",
+      "ground_truth_answer": "Yes, but must contact merchant first. Process: 1) Contact merchant requesting return/refund per their policy, 2) Return item if possible following merchant's return process, 3) Keep evidence - photos of defective/incorrect item, product description from website, order confirmation, return tracking if sent back. Dispute grounds: 'Merchandise Not as Described' or 'Defective Merchandise', include description mismatch details, photos, merchant communication. Common issues: clothing wrong size (must prove description inaccurate), electronics don't work (must show defect not user error), counterfeit items (strong case for chargeback). Timeline: allow 30 days for merchant to respond to return before filing dispute. Success rate high if clear defect and merchant unresponsive.",
+      "ground_truth_contexts": [
+        "Must contact merchant first: request return/refund per policy",
+        "Return item following merchant process",
+        "Evidence: photos, website description, order confirmation, return tracking",
+        "Grounds: 'Not as Described' or 'Defective', include details and photos",
+        "Issues: wrong size (prove description wrong), defective (show defect), counterfeit (strong case)",
+        "Wait 30 days for merchant response before disputing"
+      ],
+      "complexity": "high",
+      "expected_sources": ["POL-DISP-001", "FAQ-DISP-001"]
+    },
+    {
+      "id": "Q048",
+      "question": "Can I lock my card temporarily if I misplace it?",
+      "intent": "CARD_REPLACEMENT",
+      "ground_truth_answer": "Yes, use Card Controls in mobile app to instantly lock your card. When locked: all new transactions blocked (ATM, online, in-store), recurring payments continue processing normally. Unlock anytime instantly if you find the card. Use cases: lock when not using card for security, lock if misplaced (unlock if found without needing replacement), lock while traveling internationally, lock specific card if you have multiple. Additional Card Controls features: set spending limits, block merchant categories (gas, restaurants, online), enable geographic restrictions (block if used outside your area). This temporary lock avoids needing card replacement if you find it later.",
+      "ground_truth_contexts": [
+        "Mobile app Card Controls: instant lock/unlock",
+        "Locked: blocks new transactions (ATM, online, store), recurring continues",
+        "Unlock anytime instantly",
+        "Use cases: not using, misplaced, travel, multiple cards",
+        "Additional: spending limits, merchant blocks, geo-restrictions",
+        "Avoids replacement if found later"
+      ],
+      "complexity": "medium",
+      "expected_sources": ["POL-CARD-001", "FAQ-GEN-001"]
+    },
+    {
+      "id": "Q049",
+      "question": "What if I lose a dispute? Can I appeal?",
+      "intent": "DISPUTE",
+      "ground_truth_answer": "Yes, you have appeal rights. Appeal process: 1) Review determination letter explaining why dispute denied, 2) Gather new evidence (additional documentation supporting your case), 3) File appeal within 30 days of denial, 4) Provide new information not included in initial investigation, 5) Escalation - we may escalate to card network (Visa/Mastercard) for arbitration. Common denial reasons: merchant provided proof of delivery, transaction matches your historical patterns, evidence supports merchant's position, you didn't respond to information requests during investigation. Arbitration (last resort): card network makes final binding decision, used for high-value disputes, may involve fees ($500+), final decision with no further appeal. Success rate: appeals succeed 20-30% of the time when new evidence is provided.",
+      "ground_truth_contexts": [
+        "Appeal rights available",
+        "Process: review letter, gather new evidence, file within 30 days, provide new info, possible escalation to card network",
+        "Denial reasons: merchant proof of delivery, matches patterns, evidence supports merchant, no response",
+        "Arbitration: card network final decision, high-value disputes, $500+ fees, binding",
+        "Success: 20-30% with new evidence"
+      ],
+      "complexity": "high",
+      "expected_sources": ["POL-DISP-001", "FAQ-DISP-001"]
+    },
+    {
+      "id": "Q050",
+      "question": "How do I access my monthly statements online?",
+      "intent": "STATEMENT_REQUEST",
+      "ground_truth_answer": "Access statements via online banking or mobile app. Online Banking: log in, go to 'Accounts', select account, click 'Statements & Documents', choose month/year, view online or download PDF. Mobile App: open app, select account, tap 'Statements', choose statement, view or share (email, save to phone). Automatic delivery: eStatements delivered to online banking monthly (free), paper statements mailed to address (may have $2-5 monthly fee), email notification when new statement ready. Statement history: 18 months available online free, older statements request through secure message/phone/branch ($5 for 19-84 months old, $10 for 84+ months old), delivered via mail or email PDF, processing 5-7 business days. Switch to eStatements (paperless): go to 'Statements & Documents', click 'Go Paperless', confirm email address, saves $2-5/month and helps environment.",
+      "ground_truth_contexts": [
+        "Online: log in → Accounts → select → Statements & Documents → choose month → view/download PDF",
+        "Mobile app: select account → Statements → choose → view/share",
+        "Automatic: eStatements free, paper $2-5/month, email notification",
+        "History: 18 months free online, older $5-10 (request secure message/phone/branch, 5-7 days)",
+        "Paperless: Statements & Documents → Go Paperless → confirm email, saves $2-5/month"
+      ],
+      "complexity": "simple",
+      "expected_sources": ["POL-ACCT-001", "FAQ-GEN-001"]
+    },
+    {
+      "id": "Q051",
+      "question": "Do I need to notify you every time I move?",
+      "intent": "ADDRESS_UPDATE",
+      "ground_truth_answer": "Yes, always update your address when you permanently relocate. Important for: receiving important account notices, getting replacement cards, receiving tax documents, security alerts and fraud prevention, regulatory compliance. For temporary moves: consider our temporary address feature (1-12 months) instead of changing permanent address - perfect for extended travel, seasonal residences, or temporary work assignments. Update 3-5 days before your move for best timeline: address processes and propagates to systems before moving day, new address active for all services when you move. Also set up mail forwarding with USPS as backup. Enable address change alerts to detect unauthorized changes.",
+      "ground_truth_contexts": [
+        "Always update for permanent relocation",
+        "Important for: notices, cards, tax docs, fraud alerts, compliance",
+        "Temporary moves: use temporary address feature (1-12 months)",
+        "Best practice: update 3-5 days before move",
+        "Timeline: processes before move, active on moving day",
+        "USPS forwarding as backup, enable change alerts"
+      ],
+      "complexity": "simple",
+      "expected_sources": ["POL-ADDR-001", "FAQ-ADDR-001"]
+    },
+    {
+      "id": "Q052",
+      "question": "How does the provisional credit work during a dispute investigation?",
+      "intent": "DISPUTE",
+      "ground_truth_answer": "Provisional credit is temporary credit issued while investigating your dispute. For credit cards: temporary credit within 10 business days, no impact on credit limit during investigation. For debit cards: provisional credit within 10 business days, immediate (5 business days) for fraud/unauthorized charges reported promptly. Thresholds: disputes under $25 may not receive provisional credit, disputes over $250 always receive provisional credit. If investigation finds in merchant's favor: we debit the provisional credit back and notify you 5 days before reversal. You keep the credit if we rule in your favor or merchant doesn't respond within 30 days. This protects you financially while we investigate, so you're not out the money during the 30-90 day investigation period.",
+      "ground_truth_contexts": [
+        "Temporary credit during investigation",
+        "Credit cards: within 10 business days, no credit limit impact",
+        "Debit cards: 10 business days (5 for fraud reported promptly)",
+        "Thresholds: under $25 may not get, over $250 always get",
+        "Reversal: if merchant wins, debited with 5 days notice",
+        "Keep credit: if you win or merchant no response",
+        "Protects you during 30-90 day investigation"
+      ],
+      "complexity": "medium",
+      "expected_sources": ["POL-DISP-001", "FAQ-DISP-001"]
+    },
+    {
+      "id": "Q053",
+      "question": "I'm a college student. Can I use my dorm address?",
+      "intent": "ADDRESS_UPDATE",
+      "ground_truth_answer": "Yes, with considerations. Dorm address: accepted as temporary address, good for academic year duration, consider using temporary address feature (auto-reverts), keep parents' address as permanent backup. Summer break planning: update to summer address or parents' address, use temporary address feature, enable paperless statements (most reliable). Best practice: keep parents' address as permanent, use dorm as temporary mailing address, switch to paperless for important documents, update before semester starts not after arriving. This avoids missing mail during transitions and provides stability between school years.",
+      "ground_truth_contexts": [
+        "Dorm accepted as temporary address",
+        "Good for academic year",
+        "Use temporary address feature (auto-reverts)",
+        "Parents' address as permanent backup",
+        "Summer: update to summer/parents address",
+        "Best: parents permanent, dorm temporary, paperless statements",
+        "Update before semester starts"
+      ],
+      "complexity": "medium",
+      "expected_sources": ["FAQ-ADDR-001", "POL-ADDR-001"]
+    },
+    {
+      "id": "Q054",
+      "question": "What payment methods are available for paying my bills?",
+      "intent": "PAYMENT_ISSUE",
+      "ground_truth_answer": "Multiple payment methods available. Online/Digital: online banking (schedule one-time or recurring), mobile app (pay on the go, mobile check deposit), phone banking (automated or representative-assisted 1-800-555-BANK), mobile wallet (Apple Pay, Google Pay, Samsung Pay). Traditional: in-branch (visit any location, cash or check), ATM (deposit checks/cash, transfer between accounts), mail (send check to processing center), auto-pay (automatic deductions). Business/Bill Pay: ACH transfer (direct bank-to-bank, 1-3 days, $0-3 fee), wire transfer (same-day domestic $15-35, international 1-2 days $35-50), bill pay service (free with checking, pay anyone). Payment times: online/app/phone before cutoff - same business day, branch - immediate posting, mail - 3-5 business days to process. Best practices: schedule payments 1-2 days before due date to ensure on-time posting.",
+      "ground_truth_contexts": [
+        "Online/Digital: online banking, mobile app, phone 1-800-555-BANK, mobile wallet",
+        "Traditional: in-branch, ATM, mail, auto-pay",
+        "Business: ACH (1-3 days, $0-3), wire (same-day $15-35, international 1-2 days $35-50), bill pay (free)",
+        "Times: online/app/phone same-day before cutoff, branch immediate, mail 3-5 days",
+        "Best: schedule 1-2 days before due"
+      ],
+      "complexity": "medium",
+      "expected_sources": ["POL-PAY-001", "FAQ-PAY-001"]
+    },
+    {
+      "id": "Q055",
+      "question": "Why do you send address change confirmations to both old and new addresses?",
+      "intent": "ADDRESS_UPDATE",
+      "ground_truth_answer": "This is a security measure to protect you from fraud. Confirmation to old address: alerts you if change was unauthorized, gives opportunity to report fraud immediately, required by regulations, mailed within 48 hours of change. Confirmation to new address: confirms correct address was entered, verifies mail deliverability to new location, includes instructions if incorrect. Both confirmations include: date and time of change, method used (online, phone, branch), fraud hotline number, 48-hour dispute period. If you didn't authorize the change: call fraud hotline 1-800-555-FRAUD immediately, even if 48 hours has passed. This dual-confirmation system helps detect unauthorized address changes which are often early signs of identity theft or account takeover fraud.",
+      "ground_truth_contexts": [
+        "Security measure against fraud",
+        "Old address: alerts if unauthorized, allows immediate report, required by regulation, within 48 hours",
+        "New address: confirms correct entry, verifies deliverability, instructions if wrong",
+        "Both include: date/time, method, fraud hotline, 48-hour dispute",
+        "If unauthorized: call 1-800-555-FRAUD immediately",
+        "Detects identity theft and account takeover"
+      ],
+      "complexity": "medium",
+      "expected_sources": ["POL-ADDR-001", "FAQ-ADDR-001"]
+    }
+  ],
+  "metadata": {
+    "evaluation_metrics": [
+      "faithfulness",
+      "answer_relevancy",
+      "context_precision",
+      "context_recall"
+    ],
+    "target_scores": {
+      "faithfulness": 0.80,
+      "answer_relevancy": 0.75,
+      "context_precision": 0.70,
+      "context_recall": 0.90,
+      "composite": 0.78
+    },
+    "complexity_distribution": {
+      "simple": 12,
+      "medium": 28,
+      "high": 15
+    },
+    "intent_distribution": {
+      "ADDRESS_UPDATE": 9,
+      "DISPUTE": 11,
+      "FRAUD_REPORT": 6,
+      "PAYMENT_ISSUE": 12,
+      "CARD_ACTIVATION": 1,
+      "CARD_REPLACEMENT": 3,
+      "ACCOUNT_INQUIRY": 7,
+      "STATEMENT_REQUEST": 3,
+      "BALANCE_INQUIRY": 3
+    }
+  }
+}

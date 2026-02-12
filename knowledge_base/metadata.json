@@ -1,0 +1,368 @@
+{
+  "documents": [
+    {
+      "id": "POL-ADDR-001",
+      "file_path": "knowledge_base/policies/address_update_policy.md",
+      "document_type": "policy",
+      "title": "Address Update Policy",
+      "description": "Comprehensive policy for updating customer addresses across all channels",
+      "version": "2.1",
+      "last_updated": "2024-01-15",
+      "intents": ["ADDRESS_UPDATE"],
+      "keywords": [
+        "address change",
+        "moving",
+        "relocation",
+        "update address",
+        "change of address",
+        "mailing address",
+        "physical address",
+        "PO Box",
+        "military address",
+        "APO",
+        "FPO",
+        "international address",
+        "temporary address"
+      ],
+      "related_intents": ["ACCOUNT_INQUIRY", "FRAUD_REPORT"],
+      "compliance_tags": ["PATRIOT_ACT", "GDPR", "FCRA"],
+      "channels": ["online", "phone", "branch", "mail"],
+      "customer_facing": true
+    },
+    {
+      "id": "POL-DISP-001",
+      "file_path": "knowledge_base/policies/dispute_handling_policy.md",
+      "document_type": "policy",
+      "title": "Transaction Dispute Handling Policy",
+      "description": "Policy for handling customer disputes, chargebacks, and billing error investigations",
+      "version": "3.0",
+      "last_updated": "2024-01-15",
+      "intents": ["DISPUTE"],
+      "keywords": [
+        "dispute",
+        "chargeback",
+        "unauthorized transaction",
+        "billing error",
+        "merchant dispute",
+        "wrong charge",
+        "double charge",
+        "fraud investigation",
+        "FCBA",
+        "Regulation Z",
+        "Regulation E",
+        "provisional credit"
+      ],
+      "related_intents": ["FRAUD_REPORT", "ACCOUNT_INQUIRY", "CARD_REPLACEMENT"],
+      "compliance_tags": ["FCBA", "EFTA", "REG_Z", "REG_E"],
+      "channels": ["online", "phone", "mobile_app"],
+      "customer_facing": true
+    },
+    {
+      "id": "POL-FRD-001",
+      "file_path": "knowledge_base/policies/fraud_reporting_policy.md",
+      "document_type": "policy",
+      "title": "Fraud Reporting and Investigation Policy",
+      "description": "Procedures for reporting, investigating, and preventing fraudulent account activity",
+      "version": "4.2",
+      "last_updated": "2024-01-10",
+      "intents": ["FRAUD_REPORT"],
+      "keywords": [
+        "fraud",
+        "unauthorized access",
+        "identity theft",
+        "account takeover",
+        "card fraud",
+        "phishing",
+        "skimming",
+        "wire fraud",
+        "check fraud",
+        "zero liability",
+        "fraud protection",
+        "suspicious activity"
+      ],
+      "related_intents": ["DISPUTE", "CARD_REPLACEMENT", "ACCOUNT_INQUIRY"],
+      "compliance_tags": ["FCBA", "EFTA", "GLBA", "FACT_ACT"],
+      "channels": ["phone_24_7", "online", "mobile_app", "branch"],
+      "customer_facing": true,
+      "priority": "high"
+    },
+    {
+      "id": "POL-PAY-001",
+      "file_path": "knowledge_base/policies/payment_policy.md",
+      "document_type": "policy",
+      "title": "Payment Processing Policy",
+      "description": "Policy covering all payment methods, processing times, troubleshooting, and payment assistance",
+      "version": "2.8",
+      "last_updated": "2024-01-12",
+      "intents": ["PAYMENT_ISSUE"],
+      "keywords": [
+        "payment",
+        "bill pay",
+        "ACH",
+        "wire transfer",
+        "auto-pay",
+        "payment failed",
+        "returned payment",
+        "NSF",
+        "payment schedule",
+        "cutoff time",
+        "payment methods",
+        "late payment",
+        "payment assistance"
+      ],
+      "related_intents": ["ACCOUNT_INQUIRY", "DISPUTE", "BALANCE_INQUIRY"],
+      "compliance_tags": ["REG_E", "REG_Z", "NACHA"],
+      "channels": ["online", "phone", "mobile_app", "branch", "atm", "mail"],
+      "customer_facing": true
+    },
+    {
+      "id": "POL-CARD-001",
+      "file_path": "knowledge_base/policies/card_services_policy.md",
+      "document_type": "policy",
+      "title": "Card Services Policy",
+      "description": "Comprehensive policy for card activation, replacement, controls, and benefits",
+      "version": "3.5",
+      "last_updated": "2024-01-08",
+      "intents": ["CARD_ACTIVATION", "CARD_REPLACEMENT"],
+      "keywords": [
+        "card activation",
+        "activate card",
+        "lost card",
+        "stolen card",
+        "damaged card",
+        "card replacement",
+        "debit card",
+        "credit card",
+        "PIN",
+        "card controls",
+        "card lock",
+        "virtual card",
+        "contactless",
+        "EMV chip"
+      ],
+      "related_intents": ["FRAUD_REPORT", "ACCOUNT_INQUIRY", "PAYMENT_ISSUE"],
+      "compliance_tags": ["PCI_DSS", "EMV", "REG_E"],
+      "channels": ["mobile_app", "online", "phone", "atm", "branch"],
+      "customer_facing": true
+    },
+    {
+      "id": "POL-ACCT-001",
+      "file_path": "knowledge_base/policies/account_inquiry_policy.md",
+      "document_type": "policy",
+      "title": "Account Inquiry and Statement Policy",
+      "description": "Policy for account balance inquiries, transaction history, statements, and document requests",
+      "version": "2.3",
+      "last_updated": "2024-01-14",
+      "intents": ["ACCOUNT_INQUIRY", "STATEMENT_REQUEST", "BALANCE_INQUIRY"],
+      "keywords": [
+        "balance",
+        "account balance",
+        "transaction history",
+        "statement",
+        "eStatement",
+        "account details",
+        "account information",
+        "available balance",
+        "current balance",
+        "pending transactions",
+        "account alerts",
+        "notifications"
+      ],
+      "related_intents": ["PAYMENT_ISSUE", "DISPUTE", "ADDRESS_UPDATE"],
+      "compliance_tags": ["GLBA", "REG_E", "FCRA"],
+      "channels": ["mobile_app", "online", "phone", "atm", "branch", "text"],
+      "customer_facing": true
+    },
+    {
+      "id": "FAQ-ADDR-001",
+      "file_path": "knowledge_base/faqs/address_faqs.md",
+      "document_type": "faq",
+      "title": "Address Update FAQs",
+      "description": "Frequently asked questions about changing addresses, moving scenarios, and address-related issues",
+      "version": "1.0",
+      "last_updated": "2024-01-15",
+      "intents": ["ADDRESS_UPDATE"],
+      "keywords": [
+        "how to update address",
+        "moving",
+        "PO Box",
+        "temporary address",
+        "international move",
+        "address verification",
+        "proof of address",
+        "cross-state move",
+        "military address",
+        "dorm address",
+        "address confirmation"
+      ],
+      "related_intents": ["ACCOUNT_INQUIRY", "FRAUD_REPORT"],
+      "format": "question_answer",
+      "customer_facing": true
+    },
+    {
+      "id": "FAQ-DISP-001",
+      "file_path": "knowledge_base/faqs/dispute_faqs.md",
+      "document_type": "faq",
+      "title": "Transaction Dispute FAQs",
+      "description": "Common questions about disputing charges, chargebacks, fraud vs disputes, and resolution timelines",
+      "version": "1.0",
+      "last_updated": "2024-01-15",
+      "intents": ["DISPUTE"],
+      "keywords": [
+        "how to dispute",
+        "chargeback process",
+        "dispute vs fraud",
+        "duplicate charge",
+        "item not received",
+        "defective merchandise",
+        "cancelled subscription",
+        "dispute timeline",
+        "provisional credit",
+        "merchant refund",
+        "unauthorized charge"
+      ],
+      "related_intents": ["FRAUD_REPORT", "CARD_REPLACEMENT", "PAYMENT_ISSUE"],
+      "format": "question_answer",
+      "customer_facing": true
+    },
+    {
+      "id": "FAQ-PAY-001",
+      "file_path": "knowledge_base/faqs/payment_faqs.md",
+      "document_type": "faq",
+      "title": "Payment FAQs",
+      "description": "Frequently asked questions about payment methods, cutoff times, failed payments, and payment assistance",
+      "version": "1.0",
+      "last_updated": "2024-01-15",
+      "intents": ["PAYMENT_ISSUE"],
+      "keywords": [
+        "payment options",
+        "cutoff time",
+        "payment processing time",
+        "schedule payment",
+        "payment failed",
+        "ACH vs wire",
+        "auto-pay setup",
+        "cash payment",
+        "mobile check deposit",
+        "payment error",
+        "duplicate payment",
+        "returned payment fee",
+        "payment assistance",
+        "hardship program",
+        "late payment"
+      ],
+      "related_intents": ["ACCOUNT_INQUIRY", "BALANCE_INQUIRY", "DISPUTE"],
+      "format": "question_answer",
+      "customer_facing": true
+    },
+    {
+      "id": "FAQ-GEN-001",
+      "file_path": "knowledge_base/faqs/general_faqs.md",
+      "document_type": "faq",
+      "title": "General Banking FAQs",
+      "description": "Common questions about account basics, security, fraud protection, account management, and digital banking",
+      "version": "1.0",
+      "last_updated": "2024-01-15",
+      "intents": ["ACCOUNT_INQUIRY", "BALANCE_INQUIRY", "STATEMENT_REQUEST", "FRAUD_REPORT"],
+      "keywords": [
+        "check balance",
+        "available balance",
+        "current balance",
+        "deposit availability",
+        "branch hours",
+        "open account",
+        "lost card",
+        "stolen card",
+        "fraud protection",
+        "account security",
+        "close account",
+        "multiple accounts",
+        "overdraft protection",
+        "mobile banking safety",
+        "reset password",
+        "statements",
+        "eStatements",
+        "document retention"
+      ],
+      "related_intents": ["CARD_ACTIVATION", "CARD_REPLACEMENT", "PAYMENT_ISSUE", "ADDRESS_UPDATE", "DISPUTE"],
+      "format": "question_answer",
+      "customer_facing": true
+    }
+  ],
+  "intent_mapping": {
+    "ADDRESS_UPDATE": {
+      "primary_documents": ["POL-ADDR-001", "FAQ-ADDR-001"],
+      "secondary_documents": ["POL-ACCT-001", "FAQ-GEN-001"],
+      "keywords": ["address", "moving", "relocation", "change of address", "update address"]
+    },
+    "DISPUTE": {
+      "primary_documents": ["POL-DISP-001", "FAQ-DISP-001"],
+      "secondary_documents": ["POL-FRD-001", "FAQ-PAY-001"],
+      "keywords": ["dispute", "chargeback", "unauthorized", "billing error", "wrong charge"]
+    },
+    "FRAUD_REPORT": {
+      "primary_documents": ["POL-FRD-001"],
+      "secondary_documents": ["POL-DISP-001", "POL-CARD-001", "FAQ-DISP-001", "FAQ-GEN-001"],
+      "keywords": ["fraud", "unauthorized", "identity theft", "account takeover", "suspicious"]
+    },
+    "PAYMENT_ISSUE": {
+      "primary_documents": ["POL-PAY-001", "FAQ-PAY-001"],
+      "secondary_documents": ["POL-ACCT-001", "FAQ-GEN-001"],
+      "keywords": ["payment", "bill pay", "auto-pay", "payment failed", "late payment"]
+    },
+    "CARD_ACTIVATION": {
+      "primary_documents": ["POL-CARD-001"],
+      "secondary_documents": ["FAQ-GEN-001"],
+      "keywords": ["activate", "activation", "new card", "card arrived"]
+    },
+    "CARD_REPLACEMENT": {
+      "primary_documents": ["POL-CARD-001"],
+      "secondary_documents": ["POL-FRD-001", "FAQ-GEN-001"],
+      "keywords": ["lost card", "stolen card", "damaged card", "card replacement", "new card"]
+    },
+    "ACCOUNT_INQUIRY": {
+      "primary_documents": ["POL-ACCT-001", "FAQ-GEN-001"],
+      "secondary_documents": ["POL-PAY-001"],
+      "keywords": ["account", "information", "details", "inquiry", "check account"]
+    },
+    "STATEMENT_REQUEST": {
+      "primary_documents": ["POL-ACCT-001", "FAQ-GEN-001"],
+      "secondary_documents": [],
+      "keywords": ["statement", "eStatement", "transaction history", "download statement"]
+    },
+    "BALANCE_INQUIRY": {
+      "primary_documents": ["POL-ACCT-001", "FAQ-GEN-001"],
+      "secondary_documents": ["FAQ-PAY-001"],
+      "keywords": ["balance", "how much", "available balance", "current balance", "check balance"]
+    },
+    "FALLBACK": {
+      "primary_documents": ["FAQ-GEN-001"],
+      "secondary_documents": ["POL-ACCT-001"],
+      "keywords": []
+    }
+  },
+  "retrieval_config": {
+    "top_k": 5,
+    "similarity_threshold": 0.7,
+    "intent_boost": 1.5,
+    "recency_boost": 0.1,
+    "document_type_weights": {
+      "policy": 1.0,
+      "faq": 1.2
+    },
+    "max_context_tokens": 2000,
+    "enable_reranking": true
+  },
+  "chunking_config": {
+    "chunk_size": 500,
+    "chunk_overlap": 50,
+    "preserve_boundaries": ["##", "###", "---"],
+    "metadata_fields": ["document_type", "intents", "keywords", "compliance_tags"]
+  },
+  "embedding_config": {
+    "model": "text-embedding-3-small",
+    "dimensions": 1536,
+    "batch_size": 100,
+    "cache_embeddings": true
+  }
+}
