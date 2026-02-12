@@ -3,7 +3,7 @@ LLM Prompts with guardrails for the omni-channel AI servicing platform.
 """
 
 # Import guardrail templates
-from src.services.guardrails import SYSTEM_PROMPT_GUARDRAILS, get_guardrail_prompt
+from omni_channel_ai_servicing.services.guardrails import SYSTEM_PROMPT_GUARDRAILS, get_guardrail_prompt
 
 
 INTENT_PROMPT = """

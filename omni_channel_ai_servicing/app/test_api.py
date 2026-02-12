@@ -189,8 +189,8 @@ async def main():
     print("\n⚠️  Make sure the FastAPI server is running:")
     print("   cd /home/bhargav/interview-Pocs/omni-channel-ai-servicing")
     print("   source .venv/bin/activate")
-    print("   python src/app/main.py")
-    print("\n   Or: uvicorn src.app.main:app --reload")
+    print("   python -m omni_channel_ai_servicing.app.main")
+    print("\n   Or: uvicorn omni_channel_ai_servicing.app.main:app --reload")
     
     # Check if server is running
     try:
