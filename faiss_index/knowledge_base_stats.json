@@ -1,0 +1,21 @@
+{
+  "total_vectors": 523,
+  "dimension": 1536,
+  "unique_documents": 10,
+  "unique_intents": [
+    "ACCOUNT_INQUIRY",
+    "CARD_REPLACEMENT",
+    "PAYMENT_ISSUE",
+    "STATEMENT_REQUEST",
+    "FRAUD_REPORT",
+    "BALANCE_INQUIRY",
+    "DISPUTE",
+    "ADDRESS_UPDATE",
+    "CARD_ACTIVATION"
+  ],
+  "document_types": {
+    "policy": 235,
+    "faq": 288
+  },
+  "index_size_mb": 3.064453125
+}
