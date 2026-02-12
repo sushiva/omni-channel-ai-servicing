@@ -1,0 +1,24 @@
+policy_name: address_update
+description: Rules governing customer address change requests. Customers may update their mailing address through self-service channels including chat, email, and phone. All address fields (street, city, state, zip) are required. Updates are limited to 3 per day to prevent fraud. Branch visits allow up to 10 updates per day
+
+required_fields:
+  - street
+  - city
+  - state
+  - zip
+
+allowed_channels:
+  - chat
+  - email
+  - phone
+
+max_updates_per_day: 3
+
+channel_overrides:
+  branch:
+    max_updates_per_day: 10
+
+errors:
+  missing_fields: ADDRESS_MISSING_FIELDS
+  channel_not_allowed: CHANNEL_NOT_ALLOWED
+  too_many_updates: ADDRESS_UPDATE_RATE_LIMIT

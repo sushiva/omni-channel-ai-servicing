@@ -1,12 +1,26 @@
 [build-system]
-requires = ["setuptools>=45", "wheel"]
+requires = ["setuptools>=68.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "omni-channel-ai-servicing"
-version = "1.0.0"
-description = "AI-powered customer service platform"
+version = "0.1.0"
+description = "AI-powered omnichannel customer service platform with LangGraph workflows"
+readme = "README.md"
 requires-python = ">=3.11"
+license = {text = "MIT"}
+authors = [
+    {name = "Omni Channel AI Contributors"}
+]
+keywords = ["ai", "customer-service", "langgraph", "llm", "automation"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
 dependencies = [
     "fastapi>=0.104.0",
     "uvicorn[standard]>=0.24.0",
@@ -17,14 +31,28 @@ dependencies = [
     "imapclient>=3.0.0",
     "email-reply-parser>=0.5.12",
     "beautifulsoup4>=4.12.0",
+    "langgraph>=0.0.25",
+    "langchain>=0.1.0",
 ]
 
 [project.optional-dependencies]
 dev = [
-    "pytest>=7.4.0",
+    "pytest>=9.0.0",
     "pytest-asyncio>=0.21.0",
     "pytest-cov>=4.1.0",
+    "ruff>=0.1.0",
+    "mypy>=1.8.0",
+    "bandit>=1.7.0",
 ]
+
+[project.scripts]
+omni-api = "omni_channel_ai_servicing.app.main:main"
+omni-email = "omni_channel_ai_servicing.services.email_idle_poller:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["omni_channel_ai_servicing*"]
+exclude = ["tests*", "scripts*", "docs*", "mock_services*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
@@ -32,7 +60,19 @@ python_files = ["test_*.py"]
 python_classes = ["Test*"]
 python_functions = ["test_*"]
 asyncio_mode = "auto"
-addopts = "-v --tb=short"
+addopts = "-v --tb=short --strict-markers"
 
-[tool.setuptools]
-packages = ["src"]
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+select = ["E", "F", "I", "N", "W", "B", "C90"]
+ignore = ["E501"]
+
+[tool.ruff.per-file-ignores]
+"__init__.py" = ["F401"]
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+ignore_missing_imports = true

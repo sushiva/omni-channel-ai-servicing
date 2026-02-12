@@ -5,7 +5,7 @@ Tests the should_process_email() function with various scenarios.
 """
 import pytest
 import os
-from src.services.email_processor import EmailProcessor
+from omni_channel_ai_servicing.services.email_processor import EmailProcessor
 
 
 class TestEmailFiltering:

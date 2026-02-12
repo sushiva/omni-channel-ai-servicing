@@ -1,0 +1,13 @@
+policy_name: channel_permissions
+description: Global channel permission rules. Each intent defines which channels may handle it. This policy is checked before any intent-specific policy.
+
+permissions:
+  update_address:
+    allowed_channels: [chat, email, phone]
+  request_statement:
+    allowed_channels: [chat, email]
+  dispute:
+    allowed_channels: [chat, phone]
+
+errors:
+  channel_not_allowed: CHANNEL_INTENT_NOT_PERMITTED

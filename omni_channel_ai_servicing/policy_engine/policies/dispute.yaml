@@ -1,0 +1,18 @@
+policy_name: dispute
+description: Rules for initiating a transaction dispute. Customers must provide the transaction ID and a reason. Disputes are only accepted via chat and phone channels. All disputes require human review before processing.
+
+required_fields:
+  - transaction_id
+  - reason
+
+allowed_channels:
+  - chat
+  - phone
+
+requires_human_review: true
+
+max_disputes_per_day: 5
+
+errors:
+  missing_fields: DISPUTE_MISSING_FIELDS
+  channel_not_allowed: DISPUTE_CHANNEL_NOT_ALLOWED

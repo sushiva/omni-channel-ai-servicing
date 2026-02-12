@@ -1,0 +1,24 @@
+policy_name: customer_risk
+description: Risk-based overrides applied on top of intent-specific policies. Customer risk tier is resolved at the start of each session and used to tighten rate limits, enforce human review, or restrict channels.
+
+tiers:
+  low:
+    max_address_updates_per_day: 5
+    max_disputes_per_day: 7
+    requires_human_review: false
+  medium:
+    max_address_updates_per_day: 3
+    max_disputes_per_day: 5
+    requires_human_review: false
+  high:
+    max_address_updates_per_day: 1
+    max_disputes_per_day: 2
+    requires_human_review: true
+    blocked_channels:
+      - chat
+
+default_tier: medium
+
+errors:
+  blocked_channel: RISK_CHANNEL_BLOCKED
+  requires_review: RISK_REQUIRES_HUMAN_REVIEW
