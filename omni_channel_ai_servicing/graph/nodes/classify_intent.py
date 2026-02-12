@@ -1,24 +1,30 @@
 from omni_channel_ai_servicing.llm.prompts import INTENT_PROMPT
 from omni_channel_ai_servicing.graph.nodes import log_node
 from omni_channel_ai_servicing.monitoring.logger import get_logger
+from omni_channel_ai_servicing.llm.output_parsers import intent_parser, get_intent_format_instructions
+from omni_channel_ai_servicing.domain.models.intent import CustomerIntent
+from langchain_core.output_parsers import OutputParserException
 
 logger = get_logger("classify_intent")
-
-VALID_INTENTS = {"update_address", "request_statement", "report_fraud", "dispute_transaction", "unknown"}
 
 
 @log_node("classify_intent")
 async def classify_intent_node(state):
-    prompt = INTENT_PROMPT.format(message=state.user_message)
-    raw = await state.llm.run(prompt)
-    intent = raw.strip().lower()
+    # Add format instructions to prompt
+    format_instructions = get_intent_format_instructions()
+    prompt = INTENT_PROMPT.format(message=state.user_message) + f"\n\n{format_instructions}"
     
-    # Debug: Log what LLM actually returned
-    logger.info(f"LLM raw response: '{raw}' -> cleaned: '{intent}'")
-    logger.info(f"Message was: {state.user_message[:100]}")
-
-    if intent not in VALID_INTENTS:
-        logger.warning(f"Intent '{intent}' not in VALID_INTENTS, defaulting to unknown")
-        intent = "unknown"
-
+    raw = await state.llm.run(prompt)
+    
+    # Try to parse with structured parser
+    try:
+        intent_enum: CustomerIntent = intent_parser.parse(raw)
+        intent = intent_enum.value
+        logger.info(f"Successfully parsed intent: {intent_enum.name} ({intent})")
+    except (OutputParserException, ValueError) as e:
+        logger.warning(f"Failed to parse intent from '{raw}': {e}. Defaulting to FALLBACK")
+        intent = CustomerIntent.FALLBACK.value
+    
+    logger.info(f"Message: {state.user_message[:100]} -> Intent: {intent}")
+    
     return {"intent": intent}
