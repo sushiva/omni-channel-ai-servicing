@@ -1,0 +1,399 @@
+{
+  "timestamp": "2026-02-12T21:47:04.970716",
+  "dataset_size": 15,
+  "metrics": {
+    "faithfulness": 0.6797292250233427,
+    "answer_relevancy": 0.7031491247720605,
+    "context_recall": 0.4444444444444445,
+    "context_precision": 0.6555555555088888
+  },
+  "performance": {
+    "avg_retrieval_time_ms": 208.09529622395834,
+    "avg_generation_time_ms": 1872.705825169881,
+    "avg_total_time_ms": 2080.8011213938394
+  },
+  "tech_stack": {
+    "vector_store": "FAISS",
+    "embedding_model": "OpenAI text-embedding-3-small",
+    "embedding_dimension": 1536,
+    "llm": "GPT-4o-mini",
+    "framework": "LangChain + LangGraph",
+    "knowledge_base_size": 523,
+    "knowledge_base_docs": 24
+  },
+  "individual_results": [
+    {
+      "question": "How do I update my mailing address?",
+      "answer": "To update your mailing address, you need to provide the following documentation:\n\n1. A valid government-issued photo ID (such as a driver's license, passport, or state ID).\n2. One proof of your new address dated within the last 60 days. Acceptable documents include:\n   - A utility bill (water, electric, gas, internet)\n   - A lease agreement or mortgage statement\n   - A bank statement from another institution\n   - Government correspondence (like from the DMV or IRS)\n\nIt's important to notify us every time you permanently relocate to ensure you receive important account notices, replacement cards, tax documents, and for security and compliance reasons.",
+      "contexts": [
+        "### Q: What documents do I need to update my address?\n**A:** Required documentation:\n\n**Same-State Address Change:**\n1. Valid government-issued photo ID (driver's license, passport, state ID)\n2. One proof of new address dated within 60 days:\n   - Utility bill (water, electric, gas, internet)\n   - Lease agreement or mortgage statement\n   - Bank statement from another institution\n   - Government correspondence (DMV, IRS)",
+        "### Q: Do I need to notify you every time I move?\n**A:** **Yes, always update your address when you permanently relocate.** It's important for:\n- Receiving important account notices\n- Getting replacement cards\n- Receiving tax documents\n- Security alerts and fraud prevention\n- Regulatory compliance",
+        "# Address Update Frequently Asked Questions"
+      ],
+      "ground_truth": "You can update your address through online banking, mobile app, phone banking (1-800-555-BANK), or in-branch visits. For standard same-state changes, you need a valid government-issued photo ID and proof of new address dated within 60 days (utility bill, lease agreement, mortgage statement, or government correspondence). Processing takes 1-2 business days for online submissions.",
+      "retrieval_time_ms": 559.1728687286377,
+      "generation_time_ms": 2385.4315280914307,
+      "intent": "ADDRESS_UPDATE"
+    },
+    {
+      "question": "What documents do I need for a same-state address change?",
+      "answer": "To update your address within the same state, you will need the following documents:\n\n1. A valid government-issued photo ID (such as a driver's license, passport, or state ID).\n2. One proof of your new address dated within the last 60 days. Acceptable documents include:\n   - A utility bill (water, electric, gas, internet)\n   - A lease agreement or mortgage statement\n   - A bank statement from another institution\n   - Government correspondence (such as from the DMV or IRS)\n\nMake sure to have these documents ready for your address change process.",
+      "contexts": [
+        "### Q: What documents do I need to update my address?\n**A:** Required documentation:\n\n**Same-State Address Change:**\n1. Valid government-issued photo ID (driver's license, passport, state ID)\n2. One proof of new address dated within 60 days:\n   - Utility bill (water, electric, gas, internet)\n   - Lease agreement or mortgage statement\n   - Bank statement from another institution\n   - Government correspondence (DMV, IRS)",
+        "## Verification Requirements\n\n### Standard Address Change (Same State)\nRequired documentation:\n- Valid government-issued photo ID (driver's license, passport, state ID)\n- Proof of new address dated within 60 days:\n  - Utility bill (water, electric, gas, internet)\n  - Lease agreement or mortgage statement\n  - Bank statement from another institution\n  - Government correspondence (DMV, IRS, etc.)",
+        "**Cross-State Address Change:**\n- Everything above PLUS:\n- Secondary form of ID verification\n- Documentation showing both old and new addresses\n\n**International Address:**\n- Embassy or consulate documentation\n- Notarized proof of residence\n- International mailing address verification"
+      ],
+      "ground_truth": "For a same-state address change, you need a valid government-issued photo ID (driver's license, passport, or state ID) and proof of new address dated within 60 days. Acceptable proof includes utility bills, lease agreements, mortgage statements, bank statements from another institution, or government correspondence from DMV or IRS.",
+      "retrieval_time_ms": 137.36772537231445,
+      "generation_time_ms": 1849.9557971954346,
+      "intent": "ADDRESS_UPDATE"
+    },
+    {
+      "question": "How long does it take to process an address change through the mobile app?",
+      "answer": "Processing an address change through the mobile app typically takes 1-2 business days. Once approved, the updated address will be visible in your online banking profile immediately. However, please note that it may take 24-72 hours for the new address to be reflected in statements, cards, and other services.",
+      "contexts": [
+        "### Q: How long does an address update take to process?\n**A:** Processing time depends on your submission method:\n- **Online/Mobile App**: 1-2 business days\n- **Phone**: 3-5 business days  \n- **In-Branch**: Immediate to 1 business day\n- **Cross-State Changes**: Add 2-3 business days for enhanced security review\n\nThe updated address appears in your online banking profile immediately after approval, but system-wide propagation (statements, cards, etc.) may take 24-72 hours.\n\n---",
+        "**Timeline**: Allow 5-7 business days total for cross-state address changes.",
+        "## Impact on Services\n\n### Immediate Impact\n- Online banking: Address visible immediately after approval\n- Mobile app: Updated address reflected in profile\n- Customer service: New address available to agents\n\n### Delayed Impact (24-72 hours)\n- Credit/debit cards: New cards may be ordered to new address\n- Check orders: Future orders ship to new address\n- Statement delivery: Next statement cycle uses new address"
+      ],
+      "ground_truth": "Address updates through the mobile app take 1-2 business days to process. The mobile app provides self-service address updates through a secure portal with real-time validation of address format and instant confirmation upon submission.",
+      "retrieval_time_ms": 138.06819915771484,
+      "generation_time_ms": 1616.4326667785645,
+      "intent": "ADDRESS_UPDATE"
+    },
+    {
+      "question": "I was charged twice for the same transaction. How do I dispute this?",
+      "answer": "To dispute a duplicate charge on your account, follow these steps for the fastest resolution:\n\n1. **Check for Temporary Authorization**: Verify if one of the charges is a pending authorization, as it will drop off automatically.\n2. **Contact the Merchant**: Reach out to the merchant first, as they may refund the duplicate charge immediately.\n3. **File a Dispute**: If both charges are posted and the merchant is unable to assist, you can file a dispute.\n\nYou can dispute the charge using one of the following methods:\n- **Mobile App**: Go to Transactions \u2192 \"Report Issue\" \u2192 Select \"Duplicate Charge.\"\n- **Online Banking**: Navigate to Transactions, click on the charge, and select \"Dispute This Transaction.\"\n- **Phone**: Call 1-800-555-BANK (2265), available 24/7.\n- **In-Branch**: Visit any branch with your transaction details.\n\nWhen filing, make sure to select \"Duplicate Charge\" as the reason and provide the original transaction date, amount, and confirmation number, along with evidence like a receipt showing the single purchase.\n\nResolution typically takes 15-30 days, but you may receive a provisional credit within 5 business days for obvious duplicates.",
+      "contexts": [
+        "### Q: I was charged twice for the same purchase. How do I get a refund?\n**A:** **Duplicate charges are fast to resolve:**\n\n**Fastest Path:**\n1. Check if one is a temporary authorization (pending) - it will drop off\n2. Contact merchant first - many refund duplicate immediately\n3. If both charges posted and merchant won't help, file dispute",
+        "### Q: How do I dispute a charge on my account?\n**A:** **Report disputes immediately for fastest resolution:**\n\n**Methods to Dispute:**\n1. **Mobile App** (Fastest): Transaction \u2192 \"Report Issue\" \u2192 Select reason\n2. **Online Banking**: Transactions \u2192 Click charge \u2192 \"Dispute This Transaction\"\n3. **Phone**: 1-800-555-BANK (2265), 24/7\n4. **In-Branch**: Visit any location with transaction details",
+        "**When You File:**\n- Select reason: \"Duplicate Charge\"\n- Provide: Original transaction date, amount, confirmation number\n- Evidence: Receipt showing single purchase\n\n**Resolution Time**: 15-30 days (faster than most disputes)\n\n**Provisional Credit**: Usually within 5 business days for obvious duplicates."
+      ],
+      "ground_truth": "Duplicate charges are a billing error type covered under the Fair Credit Billing Act. You have 60 days from the statement date to dispute billing errors. Submit your dispute through online banking, mobile app, phone banking, or in writing. Provide transaction details including dates, amounts, and merchant name. You'll receive provisional credit during investigation, and we'll respond within 10 business days.",
+      "retrieval_time_ms": 6.181001663208008,
+      "generation_time_ms": 3651.978015899658,
+      "intent": "DISPUTE"
+    },
+    {
+      "question": "What is my liability for unauthorized charges on my credit card?",
+      "answer": "Your liability for unauthorized charges on your credit card is generally $0 if you report the transaction before the card is used. If you report it after the card has been used but before you receive your statement, your maximum liability is $50. Additionally, there is no liability for unauthorized online or phone transactions (card-not-present). It's important to report any unauthorized charges promptly to ensure you have the best protection.",
+      "contexts": [
+        "**Zero Liability Policy:**\n- We exceed federal requirements\n- $0 liability for unauthorized transactions\n- Applies to credit and debit cards\n- Must report promptly and not have been negligent\n\n**Bottom Line**: Report unauthorized charges immediately\u2014the sooner you report, the better your protection.",
+        "### Q: What protections do I have for unauthorized charges?\n**A:** **Strong federal protections:**\n\n**Credit Card (Regulation Z / Fair Credit Billing Act):**\n- **$0 liability**: If reported before card used\n- **$50 maximum liability**: If reported after card used but before statement\n- **No liability**: For online/phone transactions (card-not-present)\n- **60-day dispute window**: For all billing errors",
+        "### Q: Can I dispute a charge if I gave someone permission to use my card?\n**A:** **This is tricky\u2014depends on circumstances:**\n\n**Usually NOT Disputable:**\n- Gave someone your card voluntarily\n- Authorized them to make purchases\n- They spent more than you expected\n- You had a disagreement later\n\n**Why:** You authorized the user, making it a civil matter between you and that person, not fraud."
+      ],
+      "ground_truth": "Under the Fair Credit Billing Act, your maximum liability for unauthorized credit card charges is $50. If you report the unauthorized use before the card is used, you have zero liability. You have 60 days from the statement date to dispute charges.",
+      "retrieval_time_ms": 283.1430435180664,
+      "generation_time_ms": 1819.6289539337158,
+      "intent": "DISPUTE"
+    },
+    {
+      "question": "How do I dispute a charge for goods I never received?",
+      "answer": "To dispute a charge for goods you never received, follow these steps:\n\n1. **Check Tracking**: Verify if the item is still in transit.\n2. **Contact the Merchant**: Request a refund or ask for the item to be reshipped.\n3. **Wait a Reasonable Timeframe**: Allow the merchant's stated delivery window plus an additional 5 days.\n4. **Document Everything**: Keep records of tracking information, emails, and your order confirmation.\n\nIf you still need to dispute the charge after these steps, you can report the dispute using one of the following methods for the fastest resolution:\n\n- **Mobile App**: Go to the transaction, select \"Report Issue,\" and choose the reason.\n- **Online Banking**: Find the transaction, click on it, and select \"Dispute This Transaction.\"\n- **Phone**: Call 1-800-555-BANK (2265), available 24/7.\n- **In-Branch**: Visit any branch with your transaction details.\n\nMake sure to act quickly for the best outcome!",
+      "contexts": [
+        "### Q: I never received the item I ordered online. Can I dispute the charge?\n**A:** **Yes, this is a common chargeback reason:**\n\n**Before Disputing - Required Steps:**\n1. Check tracking: Item may still be in transit\n2. Contact merchant: Request refund or reshipping\n3. Wait reasonable timeframe: Merchant's stated delivery window + 5 days\n4. Document everything: Tracking, emails, order confirmation",
+        "### Q: How do I dispute a charge on my account?\n**A:** **Report disputes immediately for fastest resolution:**\n\n**Methods to Dispute:**\n1. **Mobile App** (Fastest): Transaction \u2192 \"Report Issue\" \u2192 Select reason\n2. **Online Banking**: Transactions \u2192 Click charge \u2192 \"Dispute This Transaction\"\n3. **Phone**: 1-800-555-BANK (2265), 24/7\n4. **In-Branch**: Visit any location with transaction details",
+        "**Dispute/Chargeback:**\n- \u2705 You authorized the transaction\n- \u2705 BUT: Didn't receive goods/services, received wrong/defective item, charged wrong amount, charged after cancellation\n- **Report to**: Standard dispute process\n- **Action**: Investigation with merchant\n- **Liability**: Depends on outcome\n\n**Grey Area - Report as Fraud:**\n- Subscription you cancelled but still charging\n- Test charges that weren't supposed to post\n- Duplicate charges from technical errors"
+      ],
+      "ground_truth": "Goods not received is a merchant dispute type. Submit your dispute through online banking, mobile app, or phone banking. Provide order confirmation, tracking information, communication with merchant, and proof of non-delivery. Investigations typically take 30-45 days but can extend to 90 days for complex cases. You may receive provisional credit during the investigation.",
+      "retrieval_time_ms": 326.16686820983887,
+      "generation_time_ms": 3735.921621322632,
+      "intent": "DISPUTE"
+    },
+    {
+      "question": "How do I report fraudulent charges on my account?",
+      "answer": "To report fraudulent charges on your account, follow these steps:\n\n1. **Call the Fraud Hotline**: Immediately contact our 24/7 Fraud Hotline at **1-800-555-FRAUD (37283)**. This line is available around the clock for reporting suspicious transactions and can help you freeze your account if necessary.\n\n2. **Change Your Passwords**: Update your online banking password and your email password (especially if accessed from the same device). Also, consider changing your security questions for added protection.\n\n3. **Online Reporting**: If you prefer, you can also report fraud through our Online Banking or Mobile App. Navigate to \"Report Fraud\" in the security settings, select the type of fraud from the dropdown menu, provide details of the suspicious activity, and you will receive an immediate case number. Your card will be automatically locked pending review.\n\nAct quickly, as time is critical in these situations.",
+      "contexts": [
+        "### How to Report\n\n**24/7 Fraud Hotline:**\n- **Toll-Free**: 1-800-555-FRAUD (37283)\n- **International**: +1-555-555-5555 (collect calls accepted)\n- **TTY**: 1-800-555-5555 for hearing impaired\n\n**Online Banking/Mobile App:**\n- Navigate to \"Report Fraud\" in security settings\n- Select type of fraud from dropdown menu\n- Provide details of suspicious activity\n- Receive immediate case number\n- Card automatically locked pending review",
+        "### Q: What do I do if I suspect fraud on my account?\n**A:** **Time is critical\u2014act fast:**\n\n**Immediate Actions (Do Now):**\n\n**1. Call Fraud Hotline: 1-800-555-FRAUD (37283)**\n- Available 24/7\n- Report suspicious transactions\n- Freeze account if needed\n\n**2. Change Your Passwords:**\n- Online banking password\n- Email password (if accessed from same device)\n- Security questions",
+        "## Reporting Fraud Immediately"
+      ],
+      "ground_truth": "Report fraud immediately through the 24/7 fraud hotline (1-800-555-FRAUD), mobile app fraud alert button, online banking security center, or in-branch at any location. When reporting, provide your account number, list of suspicious transactions with dates and amounts, and last authorized transaction. Your account will be frozen immediately to prevent further unauthorized charges.",
+      "retrieval_time_ms": 7.7037811279296875,
+      "generation_time_ms": 2831.636428833008,
+      "intent": "FRAUD_REPORT"
+    },
+    {
+      "question": "What happens after I report fraudulent activity?",
+      "answer": "After you report fraudulent activity, you will receive an immediate case number for your report. If you reported through the online banking or mobile app, your card will be automatically locked pending review. The investigation team will then assess the details you provided, which should include your account number(s), the date and time you noticed the fraud, specific transactions in question, how you discovered the fraud, any communication with the suspected fraudster, and whether you filed a police report. Further actions will be taken based on the findings of the investigation.",
+      "contexts": [
+        "## Reporting Fraud Immediately",
+        "### How to Report\n\n**24/7 Fraud Hotline:**\n- **Toll-Free**: 1-800-555-FRAUD (37283)\n- **International**: +1-555-555-5555 (collect calls accepted)\n- **TTY**: 1-800-555-5555 for hearing impaired\n\n**Online Banking/Mobile App:**\n- Navigate to \"Report Fraud\" in security settings\n- Select type of fraud from dropdown menu\n- Provide details of suspicious activity\n- Receive immediate case number\n- Card automatically locked pending review",
+        "### Information to Provide\n- Account number(s) affected\n- Date and time you noticed the fraud\n- Specific transactions or activities in question\n- How you discovered the fraud\n- Any communication with suspected fraudster\n- Whether you've filed a police report"
+      ],
+      "ground_truth": "After reporting fraud, we immediately freeze your account, cancel compromised cards, issue replacement cards via expedited shipping (2-3 business days), conduct a comprehensive account review, provide provisional credits for disputed amounts within 10 business days, and set up enhanced monitoring. You'll also receive identity theft protection resources if applicable.",
+      "retrieval_time_ms": 3.869295120239258,
+      "generation_time_ms": 1457.2067260742188,
+      "intent": "FRAUD_REPORT"
+    },
+    {
+      "question": "Am I responsible for fraudulent charges made before I reported my card stolen?",
+      "answer": "You may not be held responsible for fraudulent charges made before you reported your card stolen, as long as you report the loss or theft promptly. It is important to act immediately to prevent further fraud. You can report a lost or stolen card by calling the 24/7 Fraud Hotline at 1-800-555-FRAUD (37283), using the mobile app, or through online banking. Always ensure to provide details of the fraudulent activity when reporting.",
+      "contexts": [
+        "### Q: How do I report a lost or stolen card?\n**A:** **Act immediately to prevent fraud:**\n\n**Report Immediately:**\n- **24/7 Fraud Hotline**: 1-800-555-FRAUD (37283)\n- **Mobile App**: Card Controls \u2192 Report Lost/Stolen \u2192 Immediate deactivation\n- **Online Banking**: Manage Cards \u2192 Report Card Lost/Stolen\n- **Text**: Text \"LOST\" to 555-2265 (if enrolled in text banking)",
+        "### How to Report\n\n**24/7 Fraud Hotline:**\n- **Toll-Free**: 1-800-555-FRAUD (37283)\n- **International**: +1-555-555-5555 (collect calls accepted)\n- **TTY**: 1-800-555-5555 for hearing impaired\n\n**Online Banking/Mobile App:**\n- Navigate to \"Report Fraud\" in security settings\n- Select type of fraud from dropdown menu\n- Provide details of suspicious activity\n- Receive immediate case number\n- Card automatically locked pending review",
+        "### Information to Provide\n- Account number(s) affected\n- Date and time you noticed the fraud\n- Specific transactions or activities in question\n- How you discovered the fraud\n- Any communication with suspected fraudster\n- Whether you've filed a police report"
+      ],
+      "ground_truth": "Your liability depends on when you report. For credit cards: $0 if reported before use, $50 maximum if reported after unauthorized use. For debit cards: $0 if reported within 2 business days, $50 if reported within 60 days, potentially $500 or more if reported after 60 days. We typically provide zero-liability protection for prompt reporting.",
+      "retrieval_time_ms": 394.2441940307617,
+      "generation_time_ms": 1486.5708351135254,
+      "intent": "FRAUD_REPORT"
+    },
+    {
+      "question": "What should I do if my card is lost or stolen?",
+      "answer": "I'm sorry, but I don't have specific information regarding lost or stolen cards in the provided context. However, generally, you should contact your card issuer immediately to report the loss or theft. They can help you block the card and issue a replacement. It's also a good idea to monitor your account for any unauthorized transactions.",
+      "contexts": [],
+      "ground_truth": "Immediately report lost or stolen cards through the 24/7 hotline (1-800-555-CARD), mobile app, or online banking. We'll cancel the card immediately, issue a replacement card (standard delivery 5-7 business days, expedited 2-3 business days), and monitor your account for unauthorized activity. You won't be liable for unauthorized charges made after you report the loss.",
+      "retrieval_time_ms": 15.244245529174805,
+      "generation_time_ms": 1404.8755168914795,
+      "intent": "CARD_SERVICES"
+    },
+    {
+      "question": "Can I temporarily lock my card if I misplaced it?",
+      "answer": "I'm sorry, but I don't have specific information regarding card locking policies. Please check with your card issuer or their customer service for assistance with temporarily locking your card.",
+      "contexts": [],
+      "ground_truth": "Yes, you can temporarily lock your card instantly through the mobile app or online banking. This prevents all transactions while the card is locked. If you find your card, you can unlock it immediately through the same channels. If not found within 48 hours, request a permanent replacement.",
+      "retrieval_time_ms": 212.0046615600586,
+      "generation_time_ms": 810.6536865234375,
+      "intent": "CARD_SERVICES"
+    },
+    {
+      "question": "When is my payment due each month?",
+      "answer": "I'm sorry, but I don't have the specific information regarding your payment due date. Please check your account details or contact customer service for assistance.",
+      "contexts": [],
+      "ground_truth": "Your payment due date is shown on your monthly statement and remains the same each month. The minimum payment is due by 5:00 PM ET on the due date. Payments received after this time are considered late and may incur late fees. You can set up automatic payments or payment reminders to avoid missing payments.",
+      "retrieval_time_ms": 166.23449325561523,
+      "generation_time_ms": 855.7467460632324,
+      "intent": "PAYMENT"
+    },
+    {
+      "question": "How do I set up automatic payments?",
+      "answer": "I'm sorry, but I don't have specific information on how to set up automatic payments. Please check your service provider's website or contact their customer service for detailed instructions.",
+      "contexts": [],
+      "ground_truth": "Set up autopay through online banking or mobile app by navigating to Payment Settings and selecting AutoPay. Choose to pay the minimum payment, statement balance, or a fixed amount. Link your bank account using account and routing numbers. Autopay processes on your due date each month, and you'll receive confirmation 3 days before each payment.",
+      "retrieval_time_ms": 221.51780128479004,
+      "generation_time_ms": 912.7826690673828,
+      "intent": "PAYMENT"
+    },
+    {
+      "question": "How do I check my account balance?",
+      "answer": "You can check your account balance using several convenient methods:\n\n1. **Mobile App**: Open the app and view your balance on the home screen for the fastest access.\n2. **Online Banking**: Log in to your account, and your dashboard will display all account balances.\n3. **Text Banking**: If you have enrolled, you can text \"BAL\" to 555-2265 to receive your balance.\n4. **Phone Banking**: Call 1-800-555-BANK for an automated balance inquiry.\n\nFor the most real-time updates, the mobile app is recommended.",
+      "contexts": [
+        "### Q: How do I check my account balance?\n**A:** **Multiple convenient methods:**\n\n**Digital Channels:**\n- **Mobile App**: Open app \u2192 View balance on home screen (fastest)\n- **Online Banking**: Log in \u2192 Dashboard shows all account balances\n- **Text Banking**: Text \"BAL\" to 555-2265 (must enroll first)\n- **Phone Banking**: Call 1-800-555-BANK \u2192 Automated balance inquiry",
+        "### How to Check Your Balance\n\n**Mobile App (Recommended):**\n- Login \u2192 Dashboard \u2192 View balance immediately\n- Available Balance: Funds you can use now\n- Current Balance: Including pending transactions\n- Real-time updates\n- Biometric login for quick access\n\n**Online Banking:**\n- Login \u2192 Accounts \u2192 Select account \u2192 View balance\n- Historical balance trends\n- Download transaction reports\n- Set up balance alerts",
+        "## Account Balance Inquiries"
+      ],
+      "ground_truth": "Check your balance through online banking, mobile app (real-time balance), phone banking (1-800-555-BANK automated system or representative), ATM, or monthly statements. Mobile app and online banking show real-time available balance and pending transactions. Phone banking and ATMs provide 24/7 access to balance information.",
+      "retrieval_time_ms": 415.04764556884766,
+      "generation_time_ms": 2339.9500846862793,
+      "intent": "ACCOUNT_INQUIRY"
+    },
+    {
+      "question": "How far back can I view my transaction history?",
+      "answer": "You can view your transaction history for the last 18 months online. If you need to access transactions beyond that, you can request to download up to 7 years of history.",
+      "contexts": [
+        "### Accessing Transaction History\n\n**Online/Mobile:**\n- View last 18 months online\n- Download up to 7 years via request\n- Filter by date, amount, type\n- Search by merchant or description\n- Export to CSV, Excel, or PDF\n\n**Transaction Details Include:**\n- Date and time\n- Merchant name\n- Transaction amount\n- Current balance after transaction\n- Transaction ID (for disputes)\n- Category (auto-categorized)",
+        "## Transaction History"
+      ],
+      "ground_truth": "Online banking and mobile app provide 18 months of transaction history. For records older than 18 months, request statements through customer service. Statements are available for up to 7 years. Download options include PDF, CSV, and QFX formats for financial software import.",
+      "retrieval_time_ms": 235.46361923217773,
+      "generation_time_ms": 931.8161010742188,
+      "intent": "ACCOUNT_INQUIRY"
+    }
+  ],
+  "ragas_full_results": [
+    {
+      "user_input": "How do I update my mailing address?",
+      "retrieved_contexts": [
+        "### Q: What documents do I need to update my address?\n**A:** Required documentation:\n\n**Same-State Address Change:**\n1. Valid government-issued photo ID (driver's license, passport, state ID)\n2. One proof of new address dated within 60 days:\n   - Utility bill (water, electric, gas, internet)\n   - Lease agreement or mortgage statement\n   - Bank statement from another institution\n   - Government correspondence (DMV, IRS)",
+        "### Q: Do I need to notify you every time I move?\n**A:** **Yes, always update your address when you permanently relocate.** It's important for:\n- Receiving important account notices\n- Getting replacement cards\n- Receiving tax documents\n- Security alerts and fraud prevention\n- Regulatory compliance",
+        "# Address Update Frequently Asked Questions"
+      ],
+      "response": "To update your mailing address, you need to provide the following documentation:\n\n1. A valid government-issued photo ID (such as a driver's license, passport, or state ID).\n2. One proof of your new address dated within the last 60 days. Acceptable documents include:\n   - A utility bill (water, electric, gas, internet)\n   - A lease agreement or mortgage statement\n   - A bank statement from another institution\n   - Government correspondence (like from the DMV or IRS)\n\nIt's important to notify us every time you permanently relocate to ensure you receive important account notices, replacement cards, tax documents, and for security and compliance reasons.",
+      "reference": "You can update your address through online banking, mobile app, phone banking (1-800-555-BANK), or in-branch visits. For standard same-state changes, you need a valid government-issued photo ID and proof of new address dated within 60 days (utility bill, lease agreement, mortgage statement, or government correspondence). Processing takes 1-2 business days for online submissions.",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.9519324051213084,
+      "context_recall": 0.3333333333333333,
+      "context_precision": 0.9999999999
+    },
+    {
+      "user_input": "What documents do I need for a same-state address change?",
+      "retrieved_contexts": [
+        "### Q: What documents do I need to update my address?\n**A:** Required documentation:\n\n**Same-State Address Change:**\n1. Valid government-issued photo ID (driver's license, passport, state ID)\n2. One proof of new address dated within 60 days:\n   - Utility bill (water, electric, gas, internet)\n   - Lease agreement or mortgage statement\n   - Bank statement from another institution\n   - Government correspondence (DMV, IRS)",
+        "## Verification Requirements\n\n### Standard Address Change (Same State)\nRequired documentation:\n- Valid government-issued photo ID (driver's license, passport, state ID)\n- Proof of new address dated within 60 days:\n  - Utility bill (water, electric, gas, internet)\n  - Lease agreement or mortgage statement\n  - Bank statement from another institution\n  - Government correspondence (DMV, IRS, etc.)",
+        "**Cross-State Address Change:**\n- Everything above PLUS:\n- Secondary form of ID verification\n- Documentation showing both old and new addresses\n\n**International Address:**\n- Embassy or consulate documentation\n- Notarized proof of residence\n- International mailing address verification"
+      ],
+      "response": "To update your address within the same state, you will need the following documents:\n\n1. A valid government-issued photo ID (such as a driver's license, passport, or state ID).\n2. One proof of your new address dated within the last 60 days. Acceptable documents include:\n   - A utility bill (water, electric, gas, internet)\n   - A lease agreement or mortgage statement\n   - A bank statement from another institution\n   - Government correspondence (such as from the DMV or IRS)\n\nMake sure to have these documents ready for your address change process.",
+      "reference": "For a same-state address change, you need a valid government-issued photo ID (driver's license, passport, or state ID) and proof of new address dated within 60 days. Acceptable proof includes utility bills, lease agreements, mortgage statements, bank statements from another institution, or government correspondence from DMV or IRS.",
+      "faithfulness": 0.8333333333333334,
+      "answer_relevancy": 0.9592739150454089,
+      "context_recall": 1.0,
+      "context_precision": 0.99999999995
+    },
+    {
+      "user_input": "How long does it take to process an address change through the mobile app?",
+      "retrieved_contexts": [
+        "### Q: How long does an address update take to process?\n**A:** Processing time depends on your submission method:\n- **Online/Mobile App**: 1-2 business days\n- **Phone**: 3-5 business days  \n- **In-Branch**: Immediate to 1 business day\n- **Cross-State Changes**: Add 2-3 business days for enhanced security review\n\nThe updated address appears in your online banking profile immediately after approval, but system-wide propagation (statements, cards, etc.) may take 24-72 hours.\n\n---",
+        "**Timeline**: Allow 5-7 business days total for cross-state address changes.",
+        "## Impact on Services\n\n### Immediate Impact\n- Online banking: Address visible immediately after approval\n- Mobile app: Updated address reflected in profile\n- Customer service: New address available to agents\n\n### Delayed Impact (24-72 hours)\n- Credit/debit cards: New cards may be ordered to new address\n- Check orders: Future orders ship to new address\n- Statement delivery: Next statement cycle uses new address"
+      ],
+      "response": "Processing an address change through the mobile app typically takes 1-2 business days. Once approved, the updated address will be visible in your online banking profile immediately. However, please note that it may take 24-72 hours for the new address to be reflected in statements, cards, and other services.",
+      "reference": "Address updates through the mobile app take 1-2 business days to process. The mobile app provides self-service address updates through a secure portal with real-time validation of address format and instant confirmation upon submission.",
+      "faithfulness": 0.8,
+      "answer_relevancy": 0.9907753806342283,
+      "context_recall": 0.5,
+      "context_precision": 0.9999999999
+    },
+    {
+      "user_input": "I was charged twice for the same transaction. How do I dispute this?",
+      "retrieved_contexts": [
+        "### Q: I was charged twice for the same purchase. How do I get a refund?\n**A:** **Duplicate charges are fast to resolve:**\n\n**Fastest Path:**\n1. Check if one is a temporary authorization (pending) - it will drop off\n2. Contact merchant first - many refund duplicate immediately\n3. If both charges posted and merchant won't help, file dispute",
+        "### Q: How do I dispute a charge on my account?\n**A:** **Report disputes immediately for fastest resolution:**\n\n**Methods to Dispute:**\n1. **Mobile App** (Fastest): Transaction \u2192 \"Report Issue\" \u2192 Select reason\n2. **Online Banking**: Transactions \u2192 Click charge \u2192 \"Dispute This Transaction\"\n3. **Phone**: 1-800-555-BANK (2265), 24/7\n4. **In-Branch**: Visit any location with transaction details",
+        "**When You File:**\n- Select reason: \"Duplicate Charge\"\n- Provide: Original transaction date, amount, confirmation number\n- Evidence: Receipt showing single purchase\n\n**Resolution Time**: 15-30 days (faster than most disputes)\n\n**Provisional Credit**: Usually within 5 business days for obvious duplicates."
+      ],
+      "response": "To dispute a duplicate charge on your account, follow these steps for the fastest resolution:\n\n1. **Check for Temporary Authorization**: Verify if one of the charges is a pending authorization, as it will drop off automatically.\n2. **Contact the Merchant**: Reach out to the merchant first, as they may refund the duplicate charge immediately.\n3. **File a Dispute**: If both charges are posted and the merchant is unable to assist, you can file a dispute.\n\nYou can dispute the charge using one of the following methods:\n- **Mobile App**: Go to Transactions \u2192 \"Report Issue\" \u2192 Select \"Duplicate Charge.\"\n- **Online Banking**: Navigate to Transactions, click on the charge, and select \"Dispute This Transaction.\"\n- **Phone**: Call 1-800-555-BANK (2265), available 24/7.\n- **In-Branch**: Visit any branch with your transaction details.\n\nWhen filing, make sure to select \"Duplicate Charge\" as the reason and provide the original transaction date, amount, and confirmation number, along with evidence like a receipt showing the single purchase.\n\nResolution typically takes 15-30 days, but you may receive a provisional credit within 5 business days for obvious duplicates.",
+      "reference": "Duplicate charges are a billing error type covered under the Fair Credit Billing Act. You have 60 days from the statement date to dispute billing errors. Submit your dispute through online banking, mobile app, phone banking, or in writing. Provide transaction details including dates, amounts, and merchant name. You'll receive provisional credit during investigation, and we'll respond within 10 business days.",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.9126009308628937,
+      "context_recall": 0.4,
+      "context_precision": 0.9999999999666667
+    },
+    {
+      "user_input": "What is my liability for unauthorized charges on my credit card?",
+      "retrieved_contexts": [
+        "**Zero Liability Policy:**\n- We exceed federal requirements\n- $0 liability for unauthorized transactions\n- Applies to credit and debit cards\n- Must report promptly and not have been negligent\n\n**Bottom Line**: Report unauthorized charges immediately\u2014the sooner you report, the better your protection.",
+        "### Q: What protections do I have for unauthorized charges?\n**A:** **Strong federal protections:**\n\n**Credit Card (Regulation Z / Fair Credit Billing Act):**\n- **$0 liability**: If reported before card used\n- **$50 maximum liability**: If reported after card used but before statement\n- **No liability**: For online/phone transactions (card-not-present)\n- **60-day dispute window**: For all billing errors",
+        "### Q: Can I dispute a charge if I gave someone permission to use my card?\n**A:** **This is tricky\u2014depends on circumstances:**\n\n**Usually NOT Disputable:**\n- Gave someone your card voluntarily\n- Authorized them to make purchases\n- They spent more than you expected\n- You had a disagreement later\n\n**Why:** You authorized the user, making it a civil matter between you and that person, not fraud."
+      ],
+      "response": "Your liability for unauthorized charges on your credit card is generally $0 if you report the transaction before the card is used. If you report it after the card has been used but before you receive your statement, your maximum liability is $50. Additionally, there is no liability for unauthorized online or phone transactions (card-not-present). It's important to report any unauthorized charges promptly to ensure you have the best protection.",
+      "reference": "Under the Fair Credit Billing Act, your maximum liability for unauthorized credit card charges is $50. If you report the unauthorized use before the card is used, you have zero liability. You have 60 days from the statement date to dispute charges.",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.9788186945850275,
+      "context_recall": 1.0,
+      "context_precision": 0.49999999995
+    },
+    {
+      "user_input": "How do I dispute a charge for goods I never received?",
+      "retrieved_contexts": [
+        "### Q: I never received the item I ordered online. Can I dispute the charge?\n**A:** **Yes, this is a common chargeback reason:**\n\n**Before Disputing - Required Steps:**\n1. Check tracking: Item may still be in transit\n2. Contact merchant: Request refund or reshipping\n3. Wait reasonable timeframe: Merchant's stated delivery window + 5 days\n4. Document everything: Tracking, emails, order confirmation",
+        "### Q: How do I dispute a charge on my account?\n**A:** **Report disputes immediately for fastest resolution:**\n\n**Methods to Dispute:**\n1. **Mobile App** (Fastest): Transaction \u2192 \"Report Issue\" \u2192 Select reason\n2. **Online Banking**: Transactions \u2192 Click charge \u2192 \"Dispute This Transaction\"\n3. **Phone**: 1-800-555-BANK (2265), 24/7\n4. **In-Branch**: Visit any location with transaction details",
+        "**Dispute/Chargeback:**\n- \u2705 You authorized the transaction\n- \u2705 BUT: Didn't receive goods/services, received wrong/defective item, charged wrong amount, charged after cancellation\n- **Report to**: Standard dispute process\n- **Action**: Investigation with merchant\n- **Liability**: Depends on outcome\n\n**Grey Area - Report as Fraud:**\n- Subscription you cancelled but still charging\n- Test charges that weren't supposed to post\n- Duplicate charges from technical errors"
+      ],
+      "response": "To dispute a charge for goods you never received, follow these steps:\n\n1. **Check Tracking**: Verify if the item is still in transit.\n2. **Contact the Merchant**: Request a refund or ask for the item to be reshipped.\n3. **Wait a Reasonable Timeframe**: Allow the merchant's stated delivery window plus an additional 5 days.\n4. **Document Everything**: Keep records of tracking information, emails, and your order confirmation.\n\nIf you still need to dispute the charge after these steps, you can report the dispute using one of the following methods for the fastest resolution:\n\n- **Mobile App**: Go to the transaction, select \"Report Issue,\" and choose the reason.\n- **Online Banking**: Find the transaction, click on it, and select \"Dispute This Transaction.\"\n- **Phone**: Call 1-800-555-BANK (2265), available 24/7.\n- **In-Branch**: Visit any branch with your transaction details.\n\nMake sure to act quickly for the best outcome!",
+      "reference": "Goods not received is a merchant dispute type. Submit your dispute through online banking, mobile app, or phone banking. Provide order confirmation, tracking information, communication with merchant, and proof of non-delivery. Investigations typically take 30-45 days but can extend to 90 days for complex cases. You may receive provisional credit during the investigation.",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.9822508119607755,
+      "context_recall": 0.6,
+      "context_precision": 0.9999999999666667
+    },
+    {
+      "user_input": "How do I report fraudulent charges on my account?",
+      "retrieved_contexts": [
+        "### How to Report\n\n**24/7 Fraud Hotline:**\n- **Toll-Free**: 1-800-555-FRAUD (37283)\n- **International**: +1-555-555-5555 (collect calls accepted)\n- **TTY**: 1-800-555-5555 for hearing impaired\n\n**Online Banking/Mobile App:**\n- Navigate to \"Report Fraud\" in security settings\n- Select type of fraud from dropdown menu\n- Provide details of suspicious activity\n- Receive immediate case number\n- Card automatically locked pending review",
+        "### Q: What do I do if I suspect fraud on my account?\n**A:** **Time is critical\u2014act fast:**\n\n**Immediate Actions (Do Now):**\n\n**1. Call Fraud Hotline: 1-800-555-FRAUD (37283)**\n- Available 24/7\n- Report suspicious transactions\n- Freeze account if needed\n\n**2. Change Your Passwords:**\n- Online banking password\n- Email password (if accessed from same device)\n- Security questions",
+        "## Reporting Fraud Immediately"
+      ],
+      "response": "To report fraudulent charges on your account, follow these steps:\n\n1. **Call the Fraud Hotline**: Immediately contact our 24/7 Fraud Hotline at **1-800-555-FRAUD (37283)**. This line is available around the clock for reporting suspicious transactions and can help you freeze your account if necessary.\n\n2. **Change Your Passwords**: Update your online banking password and your email password (especially if accessed from the same device). Also, consider changing your security questions for added protection.\n\n3. **Online Reporting**: If you prefer, you can also report fraud through our Online Banking or Mobile App. Navigate to \"Report Fraud\" in the security settings, select the type of fraud from the dropdown menu, provide details of the suspicious activity, and you will receive an immediate case number. Your card will be automatically locked pending review.\n\nAct quickly, as time is critical in these situations.",
+      "reference": "Report fraud immediately through the 24/7 fraud hotline (1-800-555-FRAUD), mobile app fraud alert button, online banking security center, or in-branch at any location. When reporting, provide your account number, list of suspicious transactions with dates and amounts, and last authorized transaction. Your account will be frozen immediately to prevent further unauthorized charges.",
+      "faithfulness": 0.9411764705882353,
+      "answer_relevancy": 0.9803809476389185,
+      "context_recall": 0.75,
+      "context_precision": 0.99999999995
+    },
+    {
+      "user_input": "What happens after I report fraudulent activity?",
+      "retrieved_contexts": [
+        "## Reporting Fraud Immediately",
+        "### How to Report\n\n**24/7 Fraud Hotline:**\n- **Toll-Free**: 1-800-555-FRAUD (37283)\n- **International**: +1-555-555-5555 (collect calls accepted)\n- **TTY**: 1-800-555-5555 for hearing impaired\n\n**Online Banking/Mobile App:**\n- Navigate to \"Report Fraud\" in security settings\n- Select type of fraud from dropdown menu\n- Provide details of suspicious activity\n- Receive immediate case number\n- Card automatically locked pending review",
+        "### Information to Provide\n- Account number(s) affected\n- Date and time you noticed the fraud\n- Specific transactions or activities in question\n- How you discovered the fraud\n- Any communication with suspected fraudster\n- Whether you've filed a police report"
+      ],
+      "response": "After you report fraudulent activity, you will receive an immediate case number for your report. If you reported through the online banking or mobile app, your card will be automatically locked pending review. The investigation team will then assess the details you provided, which should include your account number(s), the date and time you noticed the fraud, specific transactions in question, how you discovered the fraud, any communication with the suspected fraudster, and whether you filed a police report. Further actions will be taken based on the findings of the investigation.",
+      "reference": "After reporting fraud, we immediately freeze your account, cancel compromised cards, issue replacement cards via expedited shipping (2-3 business days), conduct a comprehensive account review, provide provisional credits for disputed amounts within 10 business days, and set up enhanced monitoring. You'll also receive identity theft protection resources if applicable.",
+      "faithfulness": 0.8,
+      "answer_relevancy": 1.0000000000000004,
+      "context_recall": 0.0,
+      "context_precision": 0.3333333333
+    },
+    {
+      "user_input": "Am I responsible for fraudulent charges made before I reported my card stolen?",
+      "retrieved_contexts": [
+        "### Q: How do I report a lost or stolen card?\n**A:** **Act immediately to prevent fraud:**\n\n**Report Immediately:**\n- **24/7 Fraud Hotline**: 1-800-555-FRAUD (37283)\n- **Mobile App**: Card Controls \u2192 Report Lost/Stolen \u2192 Immediate deactivation\n- **Online Banking**: Manage Cards \u2192 Report Card Lost/Stolen\n- **Text**: Text \"LOST\" to 555-2265 (if enrolled in text banking)",
+        "### How to Report\n\n**24/7 Fraud Hotline:**\n- **Toll-Free**: 1-800-555-FRAUD (37283)\n- **International**: +1-555-555-5555 (collect calls accepted)\n- **TTY**: 1-800-555-5555 for hearing impaired\n\n**Online Banking/Mobile App:**\n- Navigate to \"Report Fraud\" in security settings\n- Select type of fraud from dropdown menu\n- Provide details of suspicious activity\n- Receive immediate case number\n- Card automatically locked pending review",
+        "### Information to Provide\n- Account number(s) affected\n- Date and time you noticed the fraud\n- Specific transactions or activities in question\n- How you discovered the fraud\n- Any communication with suspected fraudster\n- Whether you've filed a police report"
+      ],
+      "response": "You may not be held responsible for fraudulent charges made before you reported your card stolen, as long as you report the loss or theft promptly. It is important to act immediately to prevent further fraud. You can report a lost or stolen card by calling the 24/7 Fraud Hotline at 1-800-555-FRAUD (37283), using the mobile app, or through online banking. Always ensure to provide details of the fraudulent activity when reporting.",
+      "reference": "Your liability depends on when you report. For credit cards: $0 if reported before use, $50 maximum if reported after unauthorized use. For debit cards: $0 if reported within 2 business days, $50 if reported within 60 days, potentially $500 or more if reported after 60 days. We typically provide zero-liability protection for prompt reporting.",
+      "faithfulness": 0.5714285714285714,
+      "answer_relevancy": 0.9032269495591917,
+      "context_recall": 1.0,
+      "context_precision": 0.9999999999
+    },
+    {
+      "user_input": "What should I do if my card is lost or stolen?",
+      "retrieved_contexts": [],
+      "response": "I'm sorry, but I don't have specific information regarding lost or stolen cards in the provided context. However, generally, you should contact your card issuer immediately to report the loss or theft. They can help you block the card and issue a replacement. It's also a good idea to monitor your account for any unauthorized transactions.",
+      "reference": "Immediately report lost or stolen cards through the 24/7 hotline (1-800-555-CARD), mobile app, or online banking. We'll cancel the card immediately, issue a replacement card (standard delivery 5-7 business days, expedited 2-3 business days), and monitor your account for unauthorized activity. You won't be liable for unauthorized charges made after you report the loss.",
+      "faithfulness": 0.25,
+      "answer_relevancy": 0.0,
+      "context_recall": 0.0,
+      "context_precision": 0.0
+    },
+    {
+      "user_input": "Can I temporarily lock my card if I misplaced it?",
+      "retrieved_contexts": [],
+      "response": "I'm sorry, but I don't have specific information regarding card locking policies. Please check with your card issuer or their customer service for assistance with temporarily locking your card.",
+      "reference": "Yes, you can temporarily lock your card instantly through the mobile app or online banking. This prevents all transactions while the card is locked. If you find your card, you can unlock it immediately through the same channels. If not found within 48 hours, request a permanent replacement.",
+      "faithfulness": 0.0,
+      "answer_relevancy": 0.0,
+      "context_recall": 0.0,
+      "context_precision": 0.0
+    },
+    {
+      "user_input": "When is my payment due each month?",
+      "retrieved_contexts": [],
+      "response": "I'm sorry, but I don't have the specific information regarding your payment due date. Please check your account details or contact customer service for assistance.",
+      "reference": "Your payment due date is shown on your monthly statement and remains the same each month. The minimum payment is due by 5:00 PM ET on the due date. Payments received after this time are considered late and may incur late fees. You can set up automatic payments or payment reminders to avoid missing payments.",
+      "faithfulness": 0.0,
+      "answer_relevancy": 0.0,
+      "context_recall": 0.0,
+      "context_precision": 0.0
+    },
+    {
+      "user_input": "How do I set up automatic payments?",
+      "retrieved_contexts": [],
+      "response": "I'm sorry, but I don't have specific information on how to set up automatic payments. Please check your service provider's website or contact their customer service for detailed instructions.",
+      "reference": "Set up autopay through online banking or mobile app by navigating to Payment Settings and selecting AutoPay. Choose to pay the minimum payment, statement balance, or a fixed amount. Link your bank account using account and routing numbers. Autopay processes on your due date each month, and you'll receive confirmation 3 days before each payment.",
+      "faithfulness": 0.0,
+      "answer_relevancy": 0.0,
+      "context_recall": 0.0,
+      "context_precision": 0.0
+    },
+    {
+      "user_input": "How do I check my account balance?",
+      "retrieved_contexts": [
+        "### Q: How do I check my account balance?\n**A:** **Multiple convenient methods:**\n\n**Digital Channels:**\n- **Mobile App**: Open app \u2192 View balance on home screen (fastest)\n- **Online Banking**: Log in \u2192 Dashboard shows all account balances\n- **Text Banking**: Text \"BAL\" to 555-2265 (must enroll first)\n- **Phone Banking**: Call 1-800-555-BANK \u2192 Automated balance inquiry",
+        "### How to Check Your Balance\n\n**Mobile App (Recommended):**\n- Login \u2192 Dashboard \u2192 View balance immediately\n- Available Balance: Funds you can use now\n- Current Balance: Including pending transactions\n- Real-time updates\n- Biometric login for quick access\n\n**Online Banking:**\n- Login \u2192 Accounts \u2192 Select account \u2192 View balance\n- Historical balance trends\n- Download transaction reports\n- Set up balance alerts",
+        "## Account Balance Inquiries"
+      ],
+      "response": "You can check your account balance using several convenient methods:\n\n1. **Mobile App**: Open the app and view your balance on the home screen for the fastest access.\n2. **Online Banking**: Log in to your account, and your dashboard will display all account balances.\n3. **Text Banking**: If you have enrolled, you can text \"BAL\" to 555-2265 to receive your balance.\n4. **Phone Banking**: Call 1-800-555-BANK for an automated balance inquiry.\n\nFor the most real-time updates, the mobile app is recommended.",
+      "reference": "Check your balance through online banking, mobile app (real-time balance), phone banking (1-800-555-BANK automated system or representative), ATM, or monthly statements. Mobile app and online banking show real-time available balance and pending transactions. Phone banking and ATMs provide 24/7 access to balance information.",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.9683647964629589,
+      "context_recall": 0.3333333333333333,
+      "context_precision": 0.99999999995
+    },
+    {
+      "user_input": "How far back can I view my transaction history?",
+      "retrieved_contexts": [
+        "### Accessing Transaction History\n\n**Online/Mobile:**\n- View last 18 months online\n- Download up to 7 years via request\n- Filter by date, amount, type\n- Search by merchant or description\n- Export to CSV, Excel, or PDF\n\n**Transaction Details Include:**\n- Date and time\n- Merchant name\n- Transaction amount\n- Current balance after transaction\n- Transaction ID (for disputes)\n- Category (auto-categorized)",
+        "## Transaction History"
+      ],
+      "response": "You can view your transaction history for the last 18 months online. If you need to access transactions beyond that, you can request to download up to 7 years of history.",
+      "reference": "Online banking and mobile app provide 18 months of transaction history. For records older than 18 months, request statements through customer service. Statements are available for up to 7 years. Download options include PDF, CSV, and QFX formats for financial software import.",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.9196120397101955,
+      "context_recall": 0.75,
+      "context_precision": 0.9999999999
+    }
+  ]
+}

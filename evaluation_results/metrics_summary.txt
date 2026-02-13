@@ -1,0 +1,9 @@
+RAGAS Evaluation Summary
+============================================================
+
+Faithfulness:      0.680
+Answer Relevancy:  0.703
+Context Recall:    0.444
+Context Precision: 0.656
+
+Avg Latency: 2081ms
