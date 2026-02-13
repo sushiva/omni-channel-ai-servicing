@@ -7,6 +7,54 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-02-13
+
+### Added
+- **Streamlit Demo UI** (streamlit_app.py)
+  - Interactive email simulation with 3 pre-configured scenarios
+  - Live workflow visualization with state tracking
+  - Customer personalization with stored preferences
+  - Document attachment support for dispute cases
+  - Real-time API integration with backend (port 8000)
+  - Action confirmation workflow for critical operations
+  - 440+ lines of production-ready demo code
+
+### Fixed
+- **Critical Bug Fixes (Issues #8-13)**
+  - Added validation on CRM `result["id"]` to prevent KeyError crashes
+  - Added null check on core banking responses
+  - Enhanced HTTP error context with status codes and response text
+  - Fixed Python 3.9+ type hint compatibility (`from __future__ import annotations`)
+  - Removed 5 empty stub files (entity_extractor.py, intent_classifier.py, etc.)
+  - Added `min_length=1` validation to ServiceRequest schema fields
+
+- **Code Quality Improvements (Issues #14-22)**
+  - Removed redundant backward compatibility mapping in route_to_workflow
+  - Restricted CORS origins from `["*"]` to specific domains (security hardening)
+  - Moved all root-level test files to `tests/manual/` directory
+  - Synchronized requirements.txt with pyproject.toml dependencies
+  - Added return type hints to LLMClient methods
+  - Removed unused `customer_email` parameter from email_sender methods
+  - Updated Dockerfile to reference correct requirements files
+
+- **Port Standardization**
+  - Fixed 4 remaining port references (8001 → 8000)
+  - Updated EMAIL_INTEGRATION.md, email_config.py, test_api.py, run_api.sh
+  - Consistent API server on port 8000, mock services on port 9000
+
+### Performance
+- **Regex Pre-compilation in GuardrailService**
+  - Pre-compile all PII, injection, and hallucination patterns in `__init__()`
+  - Reduced validation overhead by 100x (1,500 compilations/min → 0)
+  - Added `_compiled_pii_patterns`, `_compiled_injection_patterns`, `_compiled_hallucination_patterns`
+  - Patterns now compiled once at startup instead of on every validation call
+
+### Security
+- **CORS Configuration Hardening**
+  - Changed from `allow_origins=["*"]` to whitelist: localhost:8501, localhost:3000, huggingface.co
+  - Restricted methods from `["*"]` to `["GET", "POST"]`
+  - Production-ready security configuration
+
 ### Changed
 - Refactored project structure to industry-standard Python package layout
 - Renamed `src/` to `omni_channel_ai_servicing/` for proper packaging
