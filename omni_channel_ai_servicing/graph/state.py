@@ -1,8 +1,10 @@
 from typing import Optional, Dict, Any, List
 from uuid import uuid4
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ConfigDict
 
 class AppState(BaseModel):
+    model_config = ConfigDict(arbitrary_types_allowed=True, extra='allow')
+    
     # Trace
     trace_id: str = Field(default_factory=lambda: uuid4().hex[:8])
 
@@ -24,6 +26,9 @@ class AppState(BaseModel):
     workflow_id: Optional[int] = None
     result: Optional[Dict[str, Any]] = None
     final_response: Optional[str] = None
+
+    # Request metadata (channel-specific info, attachments, customer name, etc.)
+    metadata: Optional[Dict[str, Any]] = None
 
     # RAG context
     retrieved_documents: Optional[List[Any]] = None

@@ -18,8 +18,8 @@ echo "🔧 Activating virtual environment..."
 source .venv/bin/activate
 
 # Check if API server is running
-if ! curl -s http://localhost:8001/docs > /dev/null 2>&1; then
-    echo "⚠️  Warning: API server doesn't seem to be running on port 8001"
+if ! curl -s http://localhost:8000/docs > /dev/null 2>&1; then
+    echo "⚠️  Warning: API server doesn't seem to be running on port 8000"
     echo "Please start it first with: ./run_api.sh"
     echo ""
     read -p "Continue anyway? (y/n) " -n 1 -r
@@ -33,4 +33,4 @@ fi
 echo "🚀 Starting Email IDLE service..."
 echo "Press Ctrl+C to stop"
 echo ""
-python src/services/email_idle_poller.py
+python -m omni_channel_ai_servicing.services.email_idle_poller

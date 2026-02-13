@@ -12,7 +12,7 @@ logger = get_logger("classify_intent")
 async def classify_intent_node(state):
     # Add format instructions to prompt
     format_instructions = get_intent_format_instructions()
-    prompt = INTENT_PROMPT.format(message=state.user_message) + f"\n\n{format_instructions}"
+    prompt = INTENT_PROMPT.format(message=state.user_message, guardrails="") + f"\n\n{format_instructions}"
     
     raw = await state.llm.run(prompt)
     

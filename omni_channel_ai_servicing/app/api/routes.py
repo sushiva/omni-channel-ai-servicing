@@ -97,7 +97,7 @@ async def handle_service_request(request: ServiceRequest) -> ServiceResponse:
         # Execute the master router (will automatically classify and route)
         result = await graph.ainvoke(state)
         
-        # Extract results
+        # Extract results (LangGraph returns dict, not Pydantic model)
         intent = result.get("intent", "unknown")
         workflow_name = result.get("workflow_name", "unknown")
         final_response = result.get("final_response", "Unable to process request")

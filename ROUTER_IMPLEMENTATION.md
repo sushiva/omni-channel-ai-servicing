@@ -20,35 +20,35 @@ classify_intent → route_to_workflow → [Conditional Routing]
 
 ### 1. **New Files**
 
-#### `src/graph/nodes/route_to_workflow.py`
+#### `omni_channel_ai_servicing/graph/nodes/route_to_workflow.py`
 - Routes requests to appropriate workflow based on intent
 - Gracefully handles unimplemented workflows by routing to fallback
 - Currently supports: address_workflow, fallback_workflow
 - Future: statement_workflow, fraud_workflow
 
-#### `src/graph/workflows/fallback_graph.py`
+#### `omni_channel_ai_servicing/graph/workflows/fallback_graph.py`
 - Simple workflow for unknown/unsupported intents
 - Provides helpful message to customer
 - Returns fallback status
 
-#### `src/graph/workflows/master_router_graph.py`
+#### `omni_channel_ai_servicing/graph/workflows/master_router_graph.py`
 - **Main orchestrator** for all customer requests
 - Uses LangGraph conditional edges for routing
 - Delegates to specialized workflow sub-graphs
 - Entry point: classify_intent → route_to_workflow → specialized workflow
 
-#### `src/app/test_master_router.py`
+#### `omni_channel_ai_servicing/app/test_master_router.py`
 - Comprehensive test suite for router
 - Tests: address update, unknown intent, unimplemented workflows
 - **All tests passing ✅**
 
 ### 2. **Enhanced Files**
 
-#### `src/graph/state.py`
+#### `omni_channel_ai_servicing/graph/state.py`
 - Added `workflow_name: Optional[str]` - tracks which workflow to execute
 - Added `channel: Optional[str]` - tracks customer channel (email/chat/voice/mobile)
 
-#### `src/graph/registry.py`
+#### `omni_channel_ai_servicing/graph/registry.py`
 - **WORKFLOW_REGISTRY** - centralized workflow registration
 - `get_workflow_graph(workflow_name)` - fetch specific workflow
 - `get_master_router_graph()` - returns master orchestrator
@@ -122,7 +122,7 @@ result = await graph.ainvoke(state)
 
 **Step 1: Create workflow graph**
 ```python
-# src/graph/workflows/statement_graph.py
+# omni_channel_ai_servicing/graph/workflows/statement_graph.py
 def build_statement_graph():
     graph = StateGraph(AppState)
     # ... implement workflow
@@ -131,7 +131,7 @@ def build_statement_graph():
 
 **Step 2: Register in registry**
 ```python
-# src/graph/registry.py
+# omni_channel_ai_servicing/graph/registry.py
 WORKFLOW_REGISTRY = {
     "address_workflow": build_address_update_graph,
     "statement_workflow": build_statement_graph,  # Add this
@@ -141,7 +141,7 @@ WORKFLOW_REGISTRY = {
 
 **Step 3: Add to master router conditional edges**
 ```python
-# src/graph/workflows/master_router_graph.py
+# omni_channel_ai_servicing/graph/workflows/master_router_graph.py
 graph.add_node("statement_workflow", build_statement_graph())
 
 graph.add_conditional_edges(
@@ -157,7 +157,7 @@ graph.add_conditional_edges(
 
 **Step 4: Update implemented workflows set**
 ```python
-# src/graph/nodes/route_to_workflow.py
+# omni_channel_ai_servicing/graph/nodes/route_to_workflow.py
 IMPLEMENTED_WORKFLOWS = {
     "address_workflow",
     "statement_workflow",  # Add this
@@ -194,8 +194,8 @@ IMPLEMENTED_WORKFLOWS = {
 ## Next Steps (Not Implemented Yet)
 
 ### Phase 1: API Layer
-- [ ] Create `src/app/api/routes.py` with `/service-request` endpoint
-- [ ] Create `src/app/api/schemas.py` (ServiceRequest, ServiceResponse)
+- [ ] Create `omni_channel_ai_servicing/app/api/routes.py` with `/service-request` endpoint
+- [ ] Create `omni_channel_ai_servicing/app/api/schemas.py` (ServiceRequest, ServiceResponse)
 - [ ] Wire FastAPI app to master router
 
 ### Phase 2: Additional Workflows
@@ -217,7 +217,7 @@ IMPLEMENTED_WORKFLOWS = {
 ```bash
 cd /home/bhargav/interview-Pocs/omni-channel-ai-servicing
 source .venv/bin/activate
-python src/app/test_master_router.py
+python omni_channel_ai_servicing/app/test_master_router.py
 ```
 
 ### Use in Code

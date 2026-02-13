@@ -82,7 +82,9 @@ class Retriever:
         # Prepare metadata filter
         filter_metadata = None
         if intent:
-            filter_metadata = {"intents": [intent]}
+            # Convert intent to uppercase to match FAISS metadata
+            intent_upper = intent.upper()
+            filter_metadata = {"intents": [intent_upper]}
 
         # Search vector store
         results = self.vector_store.similarity_search(

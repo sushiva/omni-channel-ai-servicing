@@ -115,10 +115,10 @@ Response → Email Reply (TODO)
 cd /home/bhargav/interview-Pocs/omni-channel-ai-servicing
 
 # Make sure API server is running
-python3 -m uvicorn src.app.main:app --port 8001 &
+python3 -m uvicorn omni_channel_ai_servicing.app.main:app --port 8000 &
 
 # Start email IDLE service (instant notifications)
-PYTHONPATH=/home/bhargav/interview-Pocs/omni-channel-ai-servicing python3 src/services/email_idle_poller.py
+PYTHONPATH=/home/bhargav/interview-Pocs/omni-channel-ai-servicing python3 -m omni_channel_ai_servicing.services.email_idle_poller
 ```
 
 ### Option 2: Polling (Simple - 30s Intervals)
@@ -127,10 +127,10 @@ PYTHONPATH=/home/bhargav/interview-Pocs/omni-channel-ai-servicing python3 src/se
 cd /home/bhargav/interview-Pocs/omni-channel-ai-servicing
 
 # Make sure API server is running
-python3 -m uvicorn src.app.main:app --port 8001 &
+python3 -m uvicorn omni_channel_ai_servicing.app.main:app --port 8000 &
 
 # Start email poller (checks every 30s)
-PYTHONPATH=/home/bhargav/interview-Pocs/omni-channel-ai-servicing python3 src/services/email_poller.py
+PYTHONPATH=/home/bhargav/interview-Pocs/omni-channel-ai-servicing python3 -m omni_channel_ai_servicing.services.email_poller
 ```
 
 ### Option 3: Background Service (Production)
@@ -138,7 +138,7 @@ PYTHONPATH=/home/bhargav/interview-Pocs/omni-channel-ai-servicing python3 src/se
 **For IMAP IDLE (recommended):**
 ```bash
 # Start in background with nohup
-nohup python3 src/services/email_idle_poller.py > /tmp/email_idle.log 2>&1 &
+nohup python3 -m omni_channel_ai_servicing.services.email_idle_poller > /tmp/email_idle.log 2>&1 &
 
 # Check logs
 tail -f /tmp/email_idle.log
@@ -150,7 +150,7 @@ pkill -f email_idle_poller.py
 **For Polling:**
 ```bash
 # Start in background with nohup
-nohup python3 src/services/email_poller.py > /tmp/email_poller.log 2>&1 &
+nohup python3 -m omni_channel_ai_servicing.services.email_poller > /tmp/email_poller.log 2>&1 &
 
 # Check logs
 tail -f /tmp/email_poller.log
@@ -174,12 +174,12 @@ This tests email cleaning without connecting to Gmail.
 **Using IMAP IDLE (recommended):**
 1. **Start API server**:
    ```bash
-   python3 -m uvicorn src.app.main:app --port 8001
+   python3 -m uvicorn omni_channel_ai_servicing.app.main:app --port 8000
    ```
 
 2. **Start email IDLE service**:
    ```bash
-   PYTHONPATH=$(pwd) python3 src/services/email_idle_poller.py
+   PYTHONPATH=$(pwd) python3 -m omni_channel_ai_servicing.services.email_idle_poller
    ```
 
 3. **Send test email** to your Gmail address:
@@ -199,12 +199,12 @@ This tests email cleaning without connecting to Gmail.
 **Using Polling (alternative):**
 1. **Start API server**:
    ```bash
-   python3 -m uvicorn src.app.main:app --port 8001
+   python3 -m uvicorn omni_channel_ai_servicing.app.main:app --port 8000
    ```
 
 2. **Start email poller**:
    ```bash
-   PYTHONPATH=$(pwd) python3 src/services/email_poller.py
+   PYTHONPATH=$(pwd) python3 -m omni_channel_ai_servicing.services.email_poller
    ```
 
 3. **Send test email** to your Gmail address

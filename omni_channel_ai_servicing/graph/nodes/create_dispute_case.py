@@ -28,12 +28,16 @@ async def create_dispute_case_node(state):
     merchant = entities.get("merchant")
     
     # Determine priority based on amount
-    if amount and float(amount) > 1000:
-        priority = "high"
-    elif amount and float(amount) > 100:
-        priority = "medium"
-    else:
-        priority = "low"
+    priority = "low"
+    if amount:
+        try:
+            amount_float = float(amount)
+            if amount_float > 1000:
+                priority = "high"
+            elif amount_float > 100:
+                priority = "medium"
+        except (ValueError, TypeError):
+            pass
     
     # Create dispute case
     if not workflow_client:

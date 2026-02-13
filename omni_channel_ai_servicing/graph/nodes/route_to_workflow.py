@@ -26,7 +26,8 @@ async def route_to_workflow_node(state):
     
     # Map intent to workflow identifier
     workflow_map = {
-        "update_address": "address_workflow",
+        "address_update": "address_workflow",  # Fixed: was "update_address"
+        "update_address": "address_workflow",  # Keep for backward compatibility
         "dispute_transaction": "dispute_workflow",
         "request_statement": "statement_workflow",
         "report_fraud": "fraud_workflow",

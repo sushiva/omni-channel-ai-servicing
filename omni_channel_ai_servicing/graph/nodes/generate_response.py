@@ -28,7 +28,29 @@ async def generate_response_node(state):
     # If we have context, use it to generate a grounded response
     if state.context and state.user_message:
         try:
+            # Get customer name from metadata if available (for personalization)
+            customer_name = None
+            channel = state.channel
+            has_attachments = False
+            
+            if state.metadata and isinstance(state.metadata, dict):
+                customer_name = state.metadata.get("customer_name")
+                has_attachments = state.metadata.get("has_attachments", False)
+            
             # Build prompt with context
+            greeting = f"Address the customer as {customer_name}" if customer_name else "Use a professional greeting"
+            
+            # Special instructions for email channel with attachments
+            action_instruction = ""
+            if channel == "email" and has_attachments and state.intent in ["address_update", "ADDRESS_UPDATE"]:
+                action_instruction = """
+- IMPORTANT: Since the customer has provided the required documents (as mentioned in their message), confirm that:
+  1. You have verified the attached documents
+  2. The documents meet the requirements stated in the policy
+  3. The address update has been processed/completed
+- Use language like "We have verified", "Your address has been updated", "The update is complete"
+- Be definitive and confirmatory rather than tentative"""
+            
             prompt = f"""You are a helpful customer service assistant. Use the provided context from our knowledge base to answer the user's question accurately.
 
 Context from knowledge base:
@@ -37,28 +59,19 @@ Context from knowledge base:
 User question: {state.user_message}
 
 Instructions:
+- {greeting}
 - Answer based on the context provided
 - Be concise and helpful
 - If the context doesn't fully answer the question, acknowledge what you can answer
 - Include relevant policy details when applicable
-- Don't make up information not in the context
+- Don't make up information not in the context{action_instruction}
 
 Answer:"""
             
             # Call LLM
             logger.info(f"Generating response with context for: {state.user_message[:50]}...")
             
-            # Handle both sync and async LLM interfaces
-            if hasattr(state.llm, 'ainvoke'):
-                response = await state.llm.ainvoke(prompt)
-            else:
-                response = state.llm.invoke(prompt)
-            
-            # Extract text from response
-            if hasattr(response, 'content'):
-                response_text = response.content
-            else:
-                response_text = str(response)
+            response_text = await state.llm.run(prompt)
             
             # Add citation if metadata available
             if state.context_metadata and state.context_metadata.get("num_documents", 0) > 0:

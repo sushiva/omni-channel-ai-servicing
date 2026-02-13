@@ -389,22 +389,23 @@ class EmailIdlePoller:
             logger.debug(f"Subject: Re: {subject}")
             logger.debug(f"Body preview: {body[:200]}")
             
-            # Send email via SMTP
-            success = self.email_sender.send_response(
+            # Send email via SMTP (sync call wrapped for async context)
+            import asyncio
+            success = await asyncio.to_thread(
+                self.email_sender.send_response,
                 to_email=to_email,
                 original_subject=subject,
                 response_text=body,
                 original_message_id=in_reply_to
             )
-            
+
             if success:
                 logger.info(f"✅ Email response sent successfully to {to_email}")
             else:
                 logger.warning(f"Failed to send email response to {to_email}")
-                
+
         except Exception as e:
             logger.error(f"Error sending email response: {e}")
-        # smtp_client.send_message(msg)
 
 
 async def main():
