@@ -9,7 +9,7 @@ import httpx
 from typing import Dict, Any
 
 # API base URL (assumes server is running locally)
-BASE_URL = "http://localhost:8001"
+BASE_URL = "http://localhost:8000"
 
 
 def print_section(title: str):

@@ -45,7 +45,7 @@ EMAIL_IMAP_HOST=imap.gmail.com
 EMAIL_IMAP_PORT=993
 EMAIL_POLL_INTERVAL=30  # Check every 30 seconds
 SUPPORT_EMAIL=support@yourbank.com
-API_BASE_URL=http://localhost:8001
+API_BASE_URL=http://localhost:8000
 ```
 
 ## How It Works
@@ -286,7 +286,7 @@ pip install imapclient email-reply-parser beautifulsoup4 --break-system-packages
 ```
 
 ### "API request failed: 404"
-- Make sure API server is running on port 8001
+- Make sure API server is running on port 8000
 - Check API_BASE_URL in .env
 
 ### Emails not being processed

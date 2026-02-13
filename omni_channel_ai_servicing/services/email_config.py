@@ -44,7 +44,7 @@ class EmailConfig:
     SUPPORT_EMAIL: str = os.getenv("SUPPORT_EMAIL", "support@bank.com")
     
     # API Settings
-    API_BASE_URL: str = os.getenv("API_BASE_URL", "http://localhost:8001")
+    API_BASE_URL: str = os.getenv("API_BASE_URL", "http://localhost:8000")
     
     @classmethod
     def is_configured(cls) -> bool:
