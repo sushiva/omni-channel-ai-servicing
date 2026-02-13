@@ -14,9 +14,9 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy requirements first (for better caching)
-COPY requirements_streamlit.txt .
+COPY requirements.txt requirements_streamlit.txt ./
 
-# Install Python dependencies
+# Install Python dependencies (Streamlit version includes extra UI packages)
 RUN pip install --no-cache-dir -r requirements_streamlit.txt
 
 # Copy application code

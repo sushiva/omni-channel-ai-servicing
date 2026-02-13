@@ -43,8 +43,8 @@ class GuardrailService:
         "damn", "hell", "shit", "fuck", "bitch", "bastard", "asshole"
     ]
     
-    # SQL injection patterns
-    INJECTION_PATTERNS = [
+    # SQL injection patterns (raw strings for compilation)
+    INJECTION_PATTERN_STRINGS = [
         r"(?i)(union\s+select)",
         r"(?i)(drop\s+table)",
         r"(?i)(insert\s+into)",
@@ -53,15 +53,29 @@ class GuardrailService:
         r"(?i)(script\s*>)",
     ]
     
-    # Banking-specific hallucination patterns
-    HALLUCINATION_PATTERNS = {
-        "fake_policy": r"(?i)policy\s+#?\d{10,}",  # Very long policy numbers
-        "fake_account": r"(?i)account\s+#?\d{15,}",  # Very long account numbers
-        "fake_transaction": r"(?i)transaction\s+id:?\s*[A-Z0-9]{20,}",  # Very long transaction IDs
+    # Banking-specific hallucination patterns (raw strings)
+    HALLUCINATION_PATTERN_STRINGS = {
+        "fake_policy": r"(?i)policy\s+#?\d{10,}",
+        "fake_account": r"(?i)account\s+#?\d{15,}",
+        "fake_transaction": r"(?i)transaction\s+id:?\s*[A-Z0-9]{20,}",
     }
     
     def __init__(self):
         self.violations: List[GuardrailViolation] = []
+        
+        # Pre-compile all regex patterns for performance
+        self._compiled_pii_patterns = {
+            name: re.compile(pattern) 
+            for name, pattern in self.PII_PATTERNS.items()
+        }
+        self._compiled_injection_patterns = [
+            re.compile(pattern) 
+            for pattern in self.INJECTION_PATTERN_STRINGS
+        ]
+        self._compiled_hallucination_patterns = {
+            name: re.compile(pattern)
+            for name, pattern in self.HALLUCINATION_PATTERN_STRINGS.items()
+        }
     
     # ============= Input Guardrails (Before LLM) =============
     
@@ -160,8 +174,8 @@ class GuardrailService:
         """Check for PII patterns in text"""
         violations = []
         
-        for pii_type, pattern in self.PII_PATTERNS.items():
-            matches = re.findall(pattern, text)
+        for pii_type, compiled_pattern in self._compiled_pii_patterns.items():
+            matches = compiled_pattern.findall(text)
             if matches:
                 violations.append(GuardrailViolation(
                     rule=f"pii_{pii_type}",
@@ -192,13 +206,13 @@ class GuardrailService:
         """Check for SQL/script injection attempts"""
         violations = []
         
-        for pattern in self.INJECTION_PATTERNS:
-            if re.search(pattern, text):
+        for compiled_pattern in self._compiled_injection_patterns:
+            if compiled_pattern.search(text):
                 violations.append(GuardrailViolation(
                     rule="injection_attempt",
                     severity="error",
                     message="Detected potential injection attack",
-                    detected_content=pattern
+                    detected_content=compiled_pattern.pattern
                 ))
         
         return violations
@@ -238,8 +252,8 @@ class GuardrailService:
         """Check for likely hallucinations (fake numbers, policies)"""
         violations = []
         
-        for hallucination_type, pattern in self.HALLUCINATION_PATTERNS.items():
-            matches = re.findall(pattern, response)
+        for hallucination_type, compiled_pattern in self._compiled_hallucination_patterns.items():
+            matches = compiled_pattern.findall(response)
             if matches:
                 violations.append(GuardrailViolation(
                     rule=f"hallucination_{hallucination_type}",

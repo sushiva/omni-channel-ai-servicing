@@ -155,8 +155,8 @@ class EmailSender:
             subject = original_subject
         
         # Format response with professional template
-        body = self._format_response_body(response_text, to_email)
-        html_body = self._format_response_html(response_text, to_email)
+        body = self._format_response_body(response_text)
+        html_body = self._format_response_html(response_text)
         
         return self.send_email(
             to_email=to_email,
@@ -167,7 +167,7 @@ class EmailSender:
             references=original_message_id
         )
     
-    def _format_response_body(self, response_text: str, customer_email: str) -> str:
+    def _format_response_body(self, response_text: str) -> str:
         """Format plain text response body"""
         return f"""Hello,
 
@@ -182,7 +182,7 @@ Customer Support Team
 This is an automated response from our AI-powered customer service system.
 """
     
-    def _format_response_html(self, response_text: str, customer_email: str) -> str:
+    def _format_response_html(self, response_text: str) -> str:
         """Format HTML response body"""
         # Convert newlines to <br> tags
         response_html = response_text.replace('\n', '<br>')
