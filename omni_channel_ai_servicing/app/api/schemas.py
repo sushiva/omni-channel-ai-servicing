@@ -5,7 +5,7 @@ These schemas define the contract between external clients (mobile, web, chat)
 and the AI servicing backend.
 """
 from typing import Optional, Dict, Any, Literal
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 
 
 class ServiceRequest(BaseModel):
@@ -17,7 +17,8 @@ class ServiceRequest(BaseModel):
     customer_id: str = Field(
         ...,
         description="Unique identifier for the customer",
-        examples=["cust123", "user456"]
+        examples=["cust123", "user456"],
+        min_length=1
     )
     
     message: str = Field(
@@ -27,8 +28,17 @@ class ServiceRequest(BaseModel):
             "I want to update my address to 123 Main St",
             "I need to dispute a charge",
             "How do I report fraud?"
-        ]
+        ],
+        min_length=1
     )
+    
+    @field_validator('customer_id', 'message')
+    @classmethod
+    def validate_not_empty(cls, v: str) -> str:
+        """Ensure strings are not empty or just whitespace"""
+        if not v or not v.strip():
+            raise ValueError("Field cannot be empty or whitespace only")
+        return v.strip()
     
     channel: Literal["email", "chat", "voice", "mobile", "web"] = Field(
         default="web",

@@ -4,6 +4,8 @@ Email IDLE service using IMAP IDLE for push notifications.
 Instead of polling every 30s, this uses IMAP IDLE to get instant notifications
 when new emails arrive. Much more efficient and responsive.
 """
+from __future__ import annotations
+
 import asyncio
 import logging
 import httpx
