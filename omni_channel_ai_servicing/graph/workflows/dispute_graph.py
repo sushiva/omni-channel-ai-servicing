@@ -15,6 +15,7 @@ from langgraph.graph import StateGraph
 from omni_channel_ai_servicing.graph.state import AppState
 from omni_channel_ai_servicing.graph.nodes.classify_intent import classify_intent_node
 from omni_channel_ai_servicing.graph.nodes.extract_entities import extract_entities_node
+from omni_channel_ai_servicing.graph.nodes.retrieve_context import retrieve_context_node
 from omni_channel_ai_servicing.graph.nodes.apply_policy import apply_policy_node
 from omni_channel_ai_servicing.graph.nodes.create_dispute_case import create_dispute_case_node
 from omni_channel_ai_servicing.graph.nodes.generate_response import generate_response_node
@@ -46,6 +47,7 @@ def build_dispute_graph():
     # Add nodes
     graph.add_node("classify_intent", classify_intent_node)
     graph.add_node("extract_entities", extract_entities_node)
+    graph.add_node("retrieve_context", retrieve_context_node)
     graph.add_node("apply_policy", apply_policy_node)
     graph.add_node("create_dispute_case", create_dispute_case_node)
     graph.add_node("generate_response", generate_response_node)
@@ -55,7 +57,8 @@ def build_dispute_graph():
 
     # Linear flow through classification and extraction
     graph.add_edge("classify_intent", "extract_entities")
-    graph.add_edge("extract_entities", "apply_policy")
+    graph.add_edge("extract_entities", "retrieve_context")
+    graph.add_edge("retrieve_context", "apply_policy")
 
     # Conditional routing after policy check
     graph.add_conditional_edges(

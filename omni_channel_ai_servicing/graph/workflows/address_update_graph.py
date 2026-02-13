@@ -2,6 +2,7 @@ from langgraph.graph import StateGraph
 from omni_channel_ai_servicing.graph.state import AppState
 from omni_channel_ai_servicing.graph.nodes.classify_intent import classify_intent_node
 from omni_channel_ai_servicing.graph.nodes.extract_entities import extract_entities_node
+from omni_channel_ai_servicing.graph.nodes.retrieve_context import retrieve_context_node
 from omni_channel_ai_servicing.graph.nodes.apply_policy import apply_policy_node
 from omni_channel_ai_servicing.graph.nodes.route_decision import route_decision_node
 from omni_channel_ai_servicing.graph.nodes.update_address import update_address_node
@@ -20,6 +21,7 @@ def build_address_update_graph():
 
     graph.add_node("classify_intent", classify_intent_node)
     graph.add_node("extract_entities", extract_entities_node)
+    graph.add_node("retrieve_context", retrieve_context_node)
     graph.add_node("apply_policy", apply_policy_node)
     graph.add_node("route_decision", route_decision_node)
     graph.add_node("update_address", update_address_node)
@@ -29,7 +31,8 @@ def build_address_update_graph():
     graph.set_entry_point("classify_intent")
 
     graph.add_edge("classify_intent", "extract_entities")
-    graph.add_edge("extract_entities", "apply_policy")
+    graph.add_edge("extract_entities", "retrieve_context")
+    graph.add_edge("retrieve_context", "apply_policy")
 
     # Short-circuit to response on policy violation
     graph.add_conditional_edges(

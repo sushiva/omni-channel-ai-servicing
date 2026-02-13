@@ -1,4 +1,4 @@
-from typing import Optional, Dict, Any
+from typing import Optional, Dict, Any, List
 from uuid import uuid4
 from pydantic import BaseModel, Field
 
@@ -24,6 +24,11 @@ class AppState(BaseModel):
     workflow_id: Optional[int] = None
     result: Optional[Dict[str, Any]] = None
     final_response: Optional[str] = None
+
+    # RAG context
+    retrieved_documents: Optional[List[Any]] = None
+    context: Optional[str] = None
+    context_metadata: Optional[Dict[str, Any]] = None
 
     # Integration clients
     crm_client: Any = None

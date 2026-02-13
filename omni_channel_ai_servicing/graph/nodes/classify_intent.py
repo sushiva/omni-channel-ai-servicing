@@ -3,7 +3,7 @@ from omni_channel_ai_servicing.graph.nodes import log_node
 from omni_channel_ai_servicing.monitoring.logger import get_logger
 from omni_channel_ai_servicing.llm.output_parsers import intent_parser, get_intent_format_instructions
 from omni_channel_ai_servicing.domain.models.intent import CustomerIntent
-from langchain_core.output_parsers import OutputParserException
+from langchain_core.exceptions import OutputParserException
 
 logger = get_logger("classify_intent")
 
